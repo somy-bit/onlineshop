@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import i18n from "./i18n"
-import { useTranslation } from "react-i18next"
+
 import { Product, FooterBanner, HeroBanner } from "../components"
 import { client } from "../lib/client"
 
@@ -9,7 +8,7 @@ import { client } from "../lib/client"
 const Home = ({ products, bannerData, categories }) => {
 
   const [filters, setFilter] = useState();
-  const { t } = useTranslation();
+ 
 
   const filterData = (category)=>{
       setFilter(category);
