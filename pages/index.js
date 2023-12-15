@@ -16,10 +16,12 @@ const Home = ({ products, bannerData, categories }) => {
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
-        <h2>best_sell</h2>
+        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>AghaJoon Market Products</h1>
         <div className='flex flex-row space-x-8  justify-around mt-10 overflow-x-scroll s-contain '>
+        <div onClick={()=>filterData()} className='cursor-pointer text-gray-700 font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-xl'>All</div>
+          
           {categories?.map((item, i) => (
-            <div onClick={()=>filterData(item.category)} className='cursor-pointer text-gray-700 font-semibold align-center text-center p-4 bg-red-200 rounded-xl' key={i}>{item.category}</div>
+            <div onClick={()=>filterData(item?.category)} className='cursor-pointer text-gray-700 font-semibold align-center text-center p-4 bg-red-200 rounded-xl' key={i}>{item.category}</div>
           ))}
         </div>
 

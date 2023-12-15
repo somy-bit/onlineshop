@@ -7,7 +7,7 @@ const CheckoutForm = () => {
 
     const { cartItems, totalPrice } = useStateContext();
     return (
-        <div className='p-8 space-x-4'>
+        <div className='p-8 max-w-2xl mx-auto space-x-4'>
             <h2 className='text-center text-green-900 font-semibold mb-8'>your check</h2>
             <div className='grid grid-cols-4 p-4  border-b-2 border-gray-500 mx-auto text-center  '>
                 <div>products</div>

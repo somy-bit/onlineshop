@@ -7,10 +7,10 @@ export default function App({ Component, pageProps }) {
 
   return (
     <StateContext>
-      <Layout>
+     <Layout>
         <Toaster />
         <Component {...pageProps} />
-      </Layout>
+     </Layout>
     </StateContext>
 
   )
