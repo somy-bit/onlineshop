@@ -28,14 +28,7 @@ export const StateContext = ({ children }) => {
             let prevProQuantity = checkProductInCart.quantity;
             let newItemsInCArt = cartItems.filter((item)=>item._id !== checkProductInCart._id)
             setCartItems([...newItemsInCArt,{...product,'quantity':prevProQuantity+quantity}])
-            // const updateCartItems = cartItems.map((cartProduct) => {
-            //     if (cartProduct._id === product._id) return {
-            //         ...cartProduct,
-            //         quantity: cartProduct.quantity + quantity
-            //     }
-            // })
-
-            // setCartItems(updateCartItems);
+           
 
         } else {
 

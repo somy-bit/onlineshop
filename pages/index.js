@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Product, FooterBanner, HeroBanner } from "../components"
 import { client } from "../lib/client"
 
@@ -17,7 +16,7 @@ const Home = ({ products, bannerData, categories }) => {
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
-        <h2>{t('best_sell')}</h2>
+        <h2>best_sell</h2>
         <div className='flex flex-row space-x-8  justify-around mt-10 overflow-x-scroll s-contain '>
           {categories?.map((item, i) => (
             <div onClick={()=>filterData(item.category)} className='cursor-pointer text-gray-700 font-semibold align-center text-center p-4 bg-red-200 rounded-xl' key={i}>{item.category}</div>

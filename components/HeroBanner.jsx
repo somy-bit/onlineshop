@@ -4,7 +4,7 @@ import {urlFor} from "../lib/client"
 import { useStateContext } from '../context/StateContetx'
 
 const HeroBanner = ({heroBanner}) => {
-  const {onAdd , setShowCart} = useStateContext();
+ 
   return (
     <div className="hero-banner-container">
       <div>
