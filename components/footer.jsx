@@ -3,6 +3,7 @@ import { FiPhoneForwarded } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { FiInstagram } from "react-icons/fi";
 import { FiHome } from "react-icons/fi";
+import Link from 'next/link';
 
 const Footer = () => {
   const[showIcon,setShowIcon]=useState('home')
@@ -25,7 +26,7 @@ const Footer = () => {
               <div>adress:hamburg-16st.no78</div>
               :
               showIcon == 'instagram'?
-              <a href="/" >@aghajoonmarket</a>
+              <Link href="/" >@aghajoonmarket</Link>
               :
               showIcon=='email'?
               <div>aghajonmarket@gmail.com</div>
