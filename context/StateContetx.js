@@ -15,6 +15,8 @@ export const StateContext = ({ children }) => {
     let foundItem;
     let index;
 
+    
+
     const onAdd = (product, quantity) => {
 
 
