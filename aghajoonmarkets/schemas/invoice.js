@@ -7,6 +7,7 @@ export default{
             name:'order',
             title:'Ordered Proucts',
             type:'array',
+           
             of:[{type:'object',
             fields:[
                 {name:'product_name',title:'Product Name',type:'string'},
@@ -15,6 +16,7 @@ export default{
                 
 
             ]}]
+            
           
         },
         {
@@ -28,7 +30,7 @@ export default{
             type:'object',
             fields:[
                 {name:'name',title:'Name',type:'string'},
-                {name:'phone',title:'Phone',type:'number'},
+                {name:'phone',title:'Phone',type:'string'},
                 {name:'email',title:'Email',type:'string'},
                 {name:'address',title:'Address',type:'object',
             fields:[

@@ -453,10 +453,10 @@ span.text-red {
   position: absolute;
   bottom: 12px;
   right: 5px;
-  width: 100%;
+  width: 90%;
   padding: 25px 65px;
   background-color: white;
-  box-shadow: #dcdcdc;
+  
 }
 
 .btn-container {
@@ -877,7 +877,8 @@ span.text-red {
   }
 
   .cart-bottom {
-    padding: 30px;
+    padding: 20px;
+    
   }
 
   .total h3 {
@@ -921,8 +922,8 @@ span.text-red {
     position: absolute;
     bottom: 0px;
     right: 0px;
-    width: 100%;
-    padding: 15px 30px;
+    width: 90%;
+    padding: 15px 10px;
     background-color:white;
   
   }

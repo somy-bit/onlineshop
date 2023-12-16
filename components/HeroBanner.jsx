@@ -1,7 +1,6 @@
 import React from 'react'
-
 import {urlFor} from "../lib/client"
-import { useStateContext } from '../context/StateContetx'
+
 
 const HeroBanner = ({heroBanner}) => {
  

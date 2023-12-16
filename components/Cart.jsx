@@ -27,20 +27,20 @@ const Cart = () => {
                     onClick={() => setShowCart(false)}
                 >
                     <FaAngleLeft />
-                    <span className='heading'>your cart</span>
-                    <span className='cart-num-items'>({totalQuantity} items)</span>
+                    <span className='heading'>jouw winkelwagen</span>
+                    <span className='cart-num-items'>({totalQuantity} artikelen)</span>
                 </button>
 
                 {cartItems.length < 1 && (
                     <div className='empty-cart flex flex-col items-center'>
                         <FaShoppingBasket size={150} />
-                        <h3 > your basket is empty</h3>
+                        <h3 >Jouw mandje is leeg</h3>
                         <Link href='/'>
                             <button
                                 className='btn'
                                 type='button'
                                 onClick={() => setShowCart(false)}
-                            >continue shopping</button>
+                            >doorgaan met winkelen</button>
                         </Link>
                     </div>
                 )}
@@ -80,7 +80,7 @@ const Cart = () => {
                                         className='flex flex-row justify-between items-center text-lg  '
                                         onClick={()=>onRemove(item)}>
                                         <TiDeleteOutline />
-                                        <p>remove item</p>
+                                        <p>Verwijder voorwerp</p>
                                     </button>
                                     </>
                                 </div>
@@ -92,7 +92,7 @@ const Cart = () => {
                 {cartItems.length >=1 && (
                     <div className='cart-bottom'>
                         <div className='total'>
-                            <h3>SubTotal:</h3>
+                            <h3>Subtotaal:</h3>
                             <h3>${totalPrice}</h3>
                         </div>
                         <div className='btn-container'>
@@ -101,7 +101,7 @@ const Cart = () => {
                             type='button'
                             onClick={sendToRegister}
                             >
-                            <Link href='/registerOrder'>register your purchase</Link></button>
+                            <Link href='/registerOrder'>registreer uw aankoop</Link></button>
                         </div>
                     </div>
                 )}

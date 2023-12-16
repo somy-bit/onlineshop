@@ -30,7 +30,7 @@ const Product = ({ product}) => {
       </Link>
       <div className='flex flex-1 justify-end'>
 
-        <button className='bg-red-500  text-white font-semibold px-6 py-3 rounded-xl' onClick={()=>onAdd(product,1)}>ADD</button>
+        <button className='bg-red-500  text-white font-semibold px-6 py-3 rounded-xl' onClick={()=>onAdd(product,1)}>Toevoegen</button>
 
       </div>
 

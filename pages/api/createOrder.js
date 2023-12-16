@@ -1,7 +1,7 @@
 // src/pages/api/todo.js
 
 
-import { redirect } from "next/dist/server/api-utils";
+
 import { client } from "../../lib/client";
 
 export default async function handler(req, res) {
@@ -21,12 +21,12 @@ export default async function handler(req, res) {
           })
           .then((res) => {
            
-            console.log(`Todo was created, document ID is ${res._id}`);
+            console.log(`order was created, document ID is ${res._id}`);
            
           });
         res
           .status(200)
-          .json({ msg: `Todo was created, document ID is ${res._id}` })
+          .json({ msg: 'Wir haben Ihre Bestellung erhalten! Vielen Dank, dass Sie sich für uns entschieden haben' })
          
           
           

@@ -47,7 +47,7 @@
             <p className='price'>${price}</p>
 
             <div className='space-y-2 quantity'>
-                <h3>Quantitiy :</h3>
+                <h3>kwantiteit:</h3>
                 <p className='flex flex-row quantity-desc'>
                     <span className='minus' onClick={decQty}>
                         <FiMinus />
@@ -63,8 +63,8 @@
 
             <div className='buttons'>
 
-                 <button type='button' onClick={()=>onAdd(product,qty)} className='add-to-cart'>Add To Cart</button>
-                 <button type='button' onClick={()=>onBuyNow(product,qty)} className='buy-now'>Buy Now</button>
+                 <button type='button' onClick={()=>onAdd(product,qty)} className='add-to-cart'>Voeg toe aan winkelkar</button>
+                 <button type='button' onClick={()=>onBuyNow(product,qty)} className='buy-now'>koop nu</button>
 
             </div>
 
@@ -74,7 +74,7 @@
        </div>
 
        <div className='maylike-products-wrapper'>
-        <h2>you may also like :</h2>
+        <h2>vergelijkbare producten:</h2>
         <div className='marquee'>
             <div className='track maylike-products-container'>
                 {otherProducts.map((item)=>(

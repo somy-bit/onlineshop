@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 const Layout = ({children}) => {
 
   const router = useRouter();
-const hidNav = router.pathname == "/registerOrder" || router.pathname == "/about" || router.pathname == '/success'
+const hidNav = router.pathname == "/registerOrder" || router.pathname == "/about" || router.pathname == '/success' || router.pathname == '/login' || router.pathname == '/registerNewUser';
 
   return (
     <div className='layout'>

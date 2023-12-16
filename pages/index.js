@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Product, FooterBanner, HeroBanner } from "../components"
 import { client } from "../lib/client"
-import { FaAngleUp, FaAngleDown } from 'react-icons/fa'
+import {  FaAngleDown } from 'react-icons/fa'
+
 
 
 
 const Home = ({ products, bannerData, categories }) => {
+
 
   const [filters, setFilter] = useState();
   const [showlist, setShowlist] = useState(false)
@@ -18,7 +20,7 @@ const Home = ({ products, bannerData, categories }) => {
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
-        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>AghaJoon Markets Products</h1>
+        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>AghaJoon Market Produce</h1>
         <div className='sm:hidden xs:hidden md:block max-w-5xl relative px-4 mx-auto'>
           <div className='flex flex-row space-x-8  justify-start mt-10 overflow-x-scroll  '>
 
@@ -30,7 +32,7 @@ const Home = ({ products, bannerData, categories }) => {
 
             }
 
-            {categories.length > 4 &&
+            {categories.length > 6 &&
               <>
 
                 <button onClick={() => setShowlist(!showlist)} className="font-medium rounded-lg" type="button">

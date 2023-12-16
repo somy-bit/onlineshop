@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Link from 'next/link'
 import {BsBagCheckFill} from 'react-icons/bs'
-import {useRouter} from 'next/router'
+
 
 import { useStateContext } from '../context/StateContetx'
 import {runFireWorks} from '../lib/utils'
@@ -25,9 +25,9 @@ const Success = () => {
         <p className='icon'>
             <BsBagCheckFill />
         </p>
-        <h2>Thank You For Your Order </h2>
+        <h2>bedankt voor het kiezen van onze winkel </h2>
         <Link href='/'>
-            <button type='button' className='btn' width="300px">Continue Shopping</button>
+            <button type='button' className='btn' width="300px">doorgaan met winkelen</button>
         </Link>
       </div>
     </div>
