@@ -9,7 +9,7 @@ const Footer = () => {
   const[showIcon,setShowIcon]=useState('home')
   return (
     <div className='footer-container'>
-      <p>
+      <p className='font-extralight'>
         2023 aghajoonmarket all rights reserved
       </p>
       <p className='icons'>
@@ -23,15 +23,16 @@ const Footer = () => {
 
       {
             showIcon == 'home'?
-              <div>adress:hamburg-16st.no78</div>
+              <div>adresse:Carl von Linde Str 20,
+              Wiesbaden 65197 West Center</div>
               :
               showIcon == 'instagram'?
-              <Link href="/" >@aghajoonmarket</Link>
+              <Link href="/" >@aghajoon_supermarket</Link>
               :
               showIcon=='email'?
-              <div>aghajonmarket@gmail.com</div>
+              <div>agha-joon@web.de</div>
               :
-              <div>+46-77-8799-762</div>
+              <div>+49-1590-6849527</div>
 
           }
       </div>
