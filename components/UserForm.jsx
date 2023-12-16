@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { useStateContext } from '../context/StateContetx'
-
+import toast from 'react-hot-toast';
+import {useRouter} from 'next/router';
 
 const UserForm = () => {
-    const { cartItems, totalPrice } = useStateContext();
+   
+
+    const { cartItems, totalPrice , setCartItems ,setTotalPrice} = useStateContext();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
@@ -13,8 +16,10 @@ const UserForm = () => {
     const [no, setNo] = useState('');
 
 
+    const router = useRouter();
 
-    const sendData = async () => {
+    const sendData = async (e) => {
+        e.preventDefault();
 
         let customer = {
             name: name,
@@ -38,6 +43,19 @@ const UserForm = () => {
                     customer: customer
                 })
         });
+        if(res.status == '200'){
+            setName('');
+            setEmail('');
+            setPhone('');
+            setBlock('');
+            setCity('');
+            setNo('');
+            setStreet('');
+            setCartItems([]);
+            setTotalPrice(0);
+            router.replace('/success')
+        }
+        
 
     }
 
@@ -51,7 +69,7 @@ const UserForm = () => {
             <input type='text' placeholder='your street..' onChange={(e) => setStreet(e.target.value)} value={street} className='border-b-2 w-full border-blue-300 p-3' required />
             <input type='text' placeholder='your block..' onChange={(e) => setBlock(e.target.value)} value={block} className='border-b-2 w-full border-blue-300 p-3' required />
             <input type='text' placeholder='your door number..' onChange={(e) => setNo(e.target.value)} value={no} className='border-b-2 w-full border-blue-300 p-3' required />
-            <button className='btn' type='submit' onClick={sendData}>Purchase</button>
+            <button className='btn'  onClick={(e)=>sendData(e)}>Purchase</button>
 
         </form>
     )
