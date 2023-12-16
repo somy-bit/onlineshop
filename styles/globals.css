@@ -947,4 +947,10 @@ span.text-red {
     width: 100%;
   
   }
+  .form-container{
+    width: 100%;
+    background-color: #f02d34;
+    padding: 0;
+    
+  }
 }

@@ -43,7 +43,7 @@ const Home = ({ products, bannerData, categories }) => {
                   <div className="z-50 absolute top-14 -right-4  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-500">
                     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
 
-                      {categories?.slice(2, categories.length - 1).map((item, i) =>
+                      {categories?.slice(6, categories.length).map((item, i) =>
                       (<li key={i}>
                         <p onClick={() => filterData(item?.category)} className="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{item.category}</p>
                       </li>

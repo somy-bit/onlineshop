@@ -32,26 +32,26 @@ const Login = () => {
             console.log(data.user);
 
         } else if (res.status == '500') {
-            toast.error(data.msg)
+            toast.error(data.msg,{duration:4000})
         }
 
     }
 
     const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
-    const [userType, setUserType] = useState('admin');
+    const [userType, setUserType] = useState('user');
     const [secretKey, setSecretKey] = useState('')
 
 
     return (
-        <div className='flex flex-col h-[650px] pt-3 space-y-6 w-full max-w-2xl mx-auto  justify-center items-center '>
+         <div className='flex flex-col h-[650px] pt-3 space-y-6 w-full mx-auto  justify-center items-center '>
            
                 <Link href='/'>
                     <img src='/images/logo.jpeg' className='cursor-pointer w-36 h-36' />
                 </Link>
-                <h1 className='font-semibold text-xl text-gray-700'>Log In :</h1>
+                <h1 className='font-semibold text-xl text-gray-700 mb-5'>Log In :</h1>
            
-            <form className='w-3/4  p-10 space-y-4 rounded-xl  bg-gray-200 shadow-lg '>
+            <form className='w-full  p-5 max-w-2xl space-y-4 rounded-xl  bg-gray-200 shadow-lg '>
                 <div className='flex flex-col justify-start space-y-2'>
                     <label>Voer uw e-mail adres in:</label>
                     <input type='text' className='p-3 border-gray-300 rounded-lg' value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='e-mail..' />
@@ -69,14 +69,14 @@ const Login = () => {
                 <button className='text-white font-semibold uppercase bg-red-500 rounded-xl w-full py-2' type='button' onClick={(e) => login(e)}>Aanmelden</button>
 
                 <div className=''>
-                    <label className='text-gray-400 text-sm mr-2'>beheerder : </label>
+                    <label className='text-gray-400 text-xs mr-1'>beheerder : </label>
                     <input type='radio' value='admin' checked={userType === 'admin'} onChange={(e) => setUserType(e.target.value)} />
-                    <label className='ml-10 text-gray-400 text-sm mr-2' >Gebruiker : </label>
+                    <label className='ml-10 text-gray-400 text-xs mr-1' >Gebruiker : </label>
                     <input className='' type='radio' value='user' checked={userType === 'user'} onChange={(e) => setUserType(e.target.value)} />
                 </div>
 
             </form>
-            <div className='flex flex-row items-center space-x-2'><p className='text-sm text-gray-600'>heb je geen account? </p><Link href='/registerNewUser'><p className='text-green-400 font-semibold cursor-pointer'>aanmelden</p></Link></div>
+            <div className='flex flex-row items-center space-x-2 my-5'><p className='text-sm text-gray-600'>heb je geen account? </p><Link href='/registerNewUser'><p className='text-green-400 font-semibold cursor-pointer'>aanmelden</p></Link></div>
         </div>
 
     )

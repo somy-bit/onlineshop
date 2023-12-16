@@ -38,7 +38,7 @@ export const StateContext = ({ children }) => {
 
         }
 
-        toast.success(`${qty} ${product.product_name} toegevoegd aan de winkelwagen`);
+        toast.success(`${qty} ${product.product_name} toegevoegd aan de winkelwagen`,{duration:2000});
     }
 
     const onRemove =(product)=>{
@@ -59,14 +59,14 @@ export const StateContext = ({ children }) => {
         const newCArtItem = cartItems.filter((item)=>item._id !== id)
         if (value == 'inc') {
 
-            let newCartItems = [...newCArtItem, { ...foundItem, 'quantity': foundItem.quantity + 1 }]
+            let newCartItems = [...newCArtItem.slice(0,index), { ...foundItem, 'quantity': foundItem.quantity + 1 },...newCArtItem.slice(index)]
             setCartItems(newCartItems)
             setTotalPrice((prevToP) => prevToP + foundItem.price)
             setTotalQuantity((prevToQ) => prevToQ + 1)
 
         } else if (value == 'dec') {
             if (foundItem.quantity > 1) {
-                let newCartItems = [...newCArtItem, { ...foundItem, 'quantity': foundItem.quantity - 1 }]
+                let newCartItems = [...newCArtItem.slice(0,index), { ...foundItem, 'quantity': foundItem.quantity - 1 },...newCArtItem.slice(index)]
                 setCartItems(newCartItems)
                 setTotalPrice((prevToP) => prevToP - foundItem.price)
                 setTotalQuantity((prevToQ) => prevToQ - 1)
