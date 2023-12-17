@@ -9,7 +9,7 @@ export default function WithAuth(Component){
     const{admin}=useStateContext();
     useEffect(()=>{
         if(!admin){
-            router.replace('/')
+            router.replace('/login')
         }
     },[])
 

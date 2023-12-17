@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import { useStateContext } from '../context/StateContetx'
 import {useRouter} from 'next/router';
+import emailjs from '@emailjs/browser';
 
 const UserForm = () => {
    
-
+const form =useRef();
     const { cartItems, totalPrice , setCartItems ,setTotalPrice ,user} = useStateContext();
     const [name, setName] = useState(user?.name);
     const [phone, setPhone] = useState(user?.phone);
@@ -44,15 +45,13 @@ const UserForm = () => {
         });
         
         if(res.status == '200'){
-            setName('');
-            setEmail('');
-            setPhone('');
-            setBlock('');
-            setCity('');
-            setNo('');
-            setStreet('');
-            setCartItems([]);
-            setTotalPrice(0);
+            alert('success')
+            emailjs.sendForm('service_kdx5i13', 'template_6j2f2sw', form.current, '1KWcF4v2P_0sihTus')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
             router.replace('/success')
         }
         
@@ -61,7 +60,7 @@ const UserForm = () => {
 
 
     return (
-        <form className='flex flex-col items-center justify-center'>
+        <form ref={form} className='flex flex-col items-center justify-center'>
             <input type='text' placeholder='uw naam..' value={name} onChange={(e) => setName(e.target.value)} className='border-b-2 w-full border-blue-300 p-3' required />
             <input type='number' placeholder='jouw telefoon nummer..' onChange={(e) => setPhone(e.target.value)} value={phone} className=' border-b-2 w-full border-blue-300 p-3' required />
             <input type='email' placeholder='jouw e-mailadres..' onChange={(e) => setEmail(e.target.value)} value={email} className='border-b-2 w-full border-blue-300 p-3' />

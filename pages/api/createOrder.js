@@ -1,10 +1,9 @@
 // src/pages/api/todo.js
 
-
-
 import { client } from "../../lib/client";
 
 export default async function handler(req, res) {
+ 
   switch (req.method) {
     case "POST":
       
@@ -21,6 +20,7 @@ export default async function handler(req, res) {
           })
           .then((res) => {
            
+
             console.log(`order was created, document ID is ${res._id}`);
            
           });
