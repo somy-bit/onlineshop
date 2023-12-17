@@ -7,13 +7,13 @@ const CheckoutForm = () => {
 
     const { cartItems, totalPrice } = useStateContext();
     return (
-        <div className='p-8 max-w-2xl mx-auto space-x-4'>
+        <div className=' max-w-2xl mx-auto space-x-4'>
             <h2 className='text-center text-green-900 font-semibold mb-8'>uw cheque</h2>
             <div className='grid grid-cols-4 p-4  border-b-2 border-gray-500 mx-auto text-center  '>
-                <div>producten</div>
-                <div>kwantiteit</div>
-                <div>enkele prijs</div>
-                <div>totale prijs</div>
+                <div className='overflow-hidden'>producten</div>
+                <div className='overflow-hidden'>kwantiteit</div>
+                <div className='overflow-hidden'>enkele prijs</div>
+                <div className='overflow-hidden'>totale prijs</div>
             </div>
             {
                 cartItems?.map((item,i) => (

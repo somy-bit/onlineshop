@@ -9,30 +9,54 @@ const Login = () => {
 
     const router = useRouter();
 
-    const { setUser } = useStateContext();
+    const { setUser,setAdmin } = useStateContext();
 
     const login = async (e) => {
         e.preventDefault();
 
+        if (userType == 'user') {
 
+            const res = await fetch('/api/loginApi', {
+                method: "POST",
+                body: JSON.stringify({
+                    email: userName,
+                    password: password
+                })
+            });
+            const data = await res.json();
 
-        const res = await fetch('/api/loginApi', {
-            method: "POST",
-            body: JSON.stringify({
-                email: userName,
-                password: password
-            })
-        });
-        const data = await res.json();
+            if (res.status == '200') {
 
-        if (res.status == '200') {
+                setUser(data.user[0])
+                router.replace('/');
+                console.log(data.user);
 
-            setUser(data.user[0])
-            router.replace('/');
-            console.log(data.user);
+            } else if (res.status == '500') {
+                toast.error(data.msg, { duration: 4000 })
+            }
+        }else if(userType == 'admin'){
 
-        } else if (res.status == '500') {
-            toast.error(data.msg,{duration:4000})
+            const res = await fetch('/api/adminlogin', {
+                method: "POST",
+                body: JSON.stringify({
+                    name: userName,
+                    password: password,
+                    secret_key:secretKey
+                })
+            });
+            const data = await res.json();
+
+            if (res.status == '200') {
+
+                
+                setAdmin(data.user[0])
+                router.replace('/admin');
+                console.log(data.user);
+
+            } else if (res.status == '500') {
+                toast.error(data.msg, { duration: 4000 })
+            }
+
         }
 
     }
@@ -44,13 +68,13 @@ const Login = () => {
 
 
     return (
-         <div className='flex flex-col h-[650px] pt-3 space-y-6 w-full mx-auto  justify-center items-center '>
-           
-                <Link href='/'>
-                    <img src='/images/logo.jpeg' className='cursor-pointer w-36 h-36' />
-                </Link>
-                <h1 className='font-semibold text-xl text-gray-700 mb-5'>Log In :</h1>
-           
+        <div className='flex flex-col h-[650px] pt-3 space-y-6 w-full mx-auto  justify-center items-center '>
+
+            <Link href='/'>
+                <img src='/images/logo.jpeg' className='cursor-pointer w-36 h-36' />
+            </Link>
+            <h1 className='font-semibold text-xl text-gray-700 mb-5'>Log In :</h1>
+
             <form className='w-full  p-5 max-w-2xl space-y-4 rounded-xl  bg-gray-200 shadow-lg '>
                 <div className='flex flex-col justify-start space-y-2'>
                     <label>Voer uw e-mail adres in:</label>

@@ -2,7 +2,7 @@ export default{
     name:'admin',
     type:'document',
     title:'Admin',
-    fileds:[
+    fields:[
         {
             name:'name',
             title:'Name',

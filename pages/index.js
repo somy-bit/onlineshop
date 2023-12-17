@@ -1,13 +1,34 @@
 import React, { useState } from 'react'
 import { Product, FooterBanner, HeroBanner } from "../components"
 import { client } from "../lib/client"
-import {  FaAngleDown } from 'react-icons/fa'
+import { FaAngleDown } from 'react-icons/fa'
+import { sliceStartAtom, sliceEndAtom, currentPageAtom } from '../storage/atoms'
+import { useAtom } from 'jotai'
+
 
 
 
 
 const Home = ({ products, bannerData, categories }) => {
 
+  const [currentSliceStart, setCurrentSliceStart] = useAtom(sliceStartAtom)
+  const [currentSliceEnd, setCurrentSliceEnd] = useAtom(sliceEndAtom)
+  const [currentPage, setCurrentPage] = useAtom(currentPageAtom)
+
+  // the number that is added to the states specifies how many posts are displayed per page
+  const nextPage = () => {
+    setCurrentSliceStart(currentSliceStart + 4)
+    setCurrentSliceEnd(currentSliceEnd + 4)
+    setCurrentPage(currentPage + 1)
+  }
+
+  const previousPage = () => {
+    setCurrentSliceStart(currentSliceStart - 4)
+    setCurrentSliceEnd(currentSliceEnd - 4)
+    setCurrentPage(currentPage - 1)
+  }
+
+const entries=products.slice(currentSliceStart,currentSliceEnd)
 
   const [filters, setFilter] = useState();
   const [showlist, setShowlist] = useState(false)
@@ -52,25 +73,11 @@ const Home = ({ products, bannerData, categories }) => {
                       }
 
                     </ul>
+
+
                   </div>
                 }
 
-
-
-
-
-
-
-                {/* <div className='flex justify-center items-center cursor-pointer' onClick={() => setShowlist(true)}>
-                <FaAngleDown className='' size={20} />
-                <div className='absolute z-50 right-2 top-12 rounded-md flex-col p-4 space-y-4 bg-gray-200 max-w-xs'>
-                  {categories?.slice(2, categories.length - 1).map((item,i) =>
-                    (<div onClick={() => filterData(item?.category)} className='cursor-pointer text-gray-700 font-semibold align-center text-center ' key={i}>{item.category}</div>)
-
-                  )}
-
-                </div>
-              </div> */}
               </>
             }
           </div>
@@ -79,12 +86,16 @@ const Home = ({ products, bannerData, categories }) => {
 
       <div className='products-container'>
         {filters ?
-          products.filter((item) => (item.category.category == filters)).map((pro) => <Product key={pro._id}
+          products.filter((item) => (item.category.category == filters)).slice(currentSliceStart,currentSliceEnd).map((pro) => <Product key={pro._id}
             product={pro} />)
           :
-          products?.map((product) => <Product key={product._id}
+          entries?.map((product) => <Product key={product._id}
             product={product} />
           )}
+      </div>
+      <div className='my-16 w-full flex flex-row '>
+        {currentSliceStart >= 4 && <button className='mx-auto  px-4 py-2 text-white rounded-lg bg-gradient-to-br from-blue-300 to-rose-400' onClick={previousPage}>vorig</button>}
+        {currentSliceEnd < products.length && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>volgende</button>}
       </div>
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>

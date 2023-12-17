@@ -10,7 +10,8 @@ export const StateContext = ({ children }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [qty, setQty] = useState(1);
-    const [user,setUser] =useState(null)
+    const [user,setUser] =useState(null);
+    const [admin,setAdmin] = useState(null)
 
     let foundItem;
     let index;
@@ -93,7 +94,7 @@ export const StateContext = ({ children }) => {
             setShowCart, qty, incQty, decQty, onAdd,
             toggleCartItemQuantity,onRemove,
             setCartItems,setTotalPrice,setTotalQuantity,
-            user,setUser
+            user,setUser,admin,setAdmin
         }}>
             {children}
         </Context.Provider>
