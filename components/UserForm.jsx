@@ -18,7 +18,7 @@ const form =useRef();
 
     let summery = []
     cartItems.map(item=>{
-        summery.push({product:item.product_name,quantity:item.quantity,total_price:item.price*item.quantity})
+        summery.push({product:item.product_name,quantity:item.quantity,total_price:item.price*item.quantity,id:item._id})
     })
 
     const router = useRouter();
@@ -77,7 +77,7 @@ const form =useRef();
 {
     summery?.map((item)=>(
         
-        <input type='hidden' name='product' value={JSON.stringify(item)}/>
+        <input key={item.id} type='hidden' name='product' value={JSON.stringify(item)}/>
 
         
     ))
