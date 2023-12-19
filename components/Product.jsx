@@ -6,9 +6,9 @@ import { useStateContext } from '../context/StateContetx'
 
 const Product = ({ product}) => {
 
-  const { product_name, slug, product_image, price,_id} = product;
+  const { product_name, slug, product_image, price,_id,arabic_name} = product;
 
-  const { onAdd } = useStateContext()
+  const { onAdd,lang } = useStateContext()
 
   return (
     <div>
@@ -20,7 +20,9 @@ const Product = ({ product}) => {
             height={250}
             className='product-image'
           />
-          <p className='product-name'>{product_name}</p>
+          <p className='product-name'>{lang == 'du'?product_name:(lang=='ar'?arabic_name:'')}</p>
+          
+
 
           <p className='product-price'>$ {price}</p>
 
@@ -30,7 +32,7 @@ const Product = ({ product}) => {
       </Link>
       <div className='flex flex-1 justify-end'>
 
-        <button className='bg-red-500  text-white font-semibold px-6 py-3 rounded-xl' onClick={()=>onAdd(product,1)}>Toevoegen</button>
+        <button className='bg-red-500  text-white font-semibold px-6 py-3 rounded-xl' onClick={()=>onAdd(product,1)}>{lang == 'ar'?'یضیف':(lang=='du'?'Toevoegen':'')}</button>
 
       </div>
 

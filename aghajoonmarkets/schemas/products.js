@@ -19,6 +19,12 @@ export default{
 
         },
         {
+            name:"arabic_name",
+            title :"Name",
+            type:"string"
+
+        },
+        {
             name:"slug",
             title:"Slug",
             type:"slug",

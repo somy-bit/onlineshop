@@ -4,7 +4,8 @@ import { client } from "../lib/client"
 import { FaAngleDown } from 'react-icons/fa'
 import { sliceStartAtom, sliceEndAtom, currentPageAtom } from '../storage/atoms'
 import { useAtom } from 'jotai'
-
+import CategoryList from '@/components/CategoryList'
+import { useStateContext } from '../context/StateContetx'
 
 
 
@@ -30,8 +31,12 @@ const Home = ({ products, bannerData, categories }) => {
 
 const entries=products.slice(currentSliceStart,currentSliceEnd)
 
+const {lang} = useStateContext();
+
   const [filters, setFilter] = useState();
   const [showlist, setShowlist] = useState(false)
+
+  
 
 
   const filterData = (category) => {
@@ -41,18 +46,15 @@ const entries=products.slice(currentSliceStart,currentSliceEnd)
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
-        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>AghaJoon Market Produce</h1>
+        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>{lang=='ar'?'آقاجون مارکت':(lang=='du'?'AghaJoon Market Produce':'')}</h1>
         <div className='sm:hidden xs:hidden md:block max-w-5xl relative px-4 mx-auto'>
           <div className='flex flex-row space-x-8  justify-start mt-10 overflow-x-scroll  '>
 
-            <div onClick={() => filterData()} className='cursor-pointer text-gray-700 font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-xl'>All</div>
+            <div onClick={() => filterData()} className='cursor-pointer text-gray-700 font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-xl'>{lang=='fa'?'همه':(lang=='du'?'Alle':'')}</div>
 
             {categories?.slice(0, 6).map((item, i) => (
-              <div onClick={() => filterData(item?.category)} className='cursor-pointer text-gray-700 font-semibold align-center text-center p-4 bg-red-200 rounded-xl' key={i}>{item.category}</div>
-            ))
-
+              <CategoryList filterData={filterData} item={item} key={i}/>))
             }
-
             {categories.length > 6 &&
               <>
 
@@ -66,7 +68,7 @@ const entries=products.slice(currentSliceStart,currentSliceEnd)
 
                       {categories?.slice(6, categories.length).map((item, i) =>
                       (<li key={i}>
-                        <p onClick={() => filterData(item?.category)} className="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{item.category}</p>
+                        <p onClick={() => filterData(item?.category)} className="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{lang=='du'?item.category:(lang=='ar'?item.arabic_name:item.persian_name)}</p>
                       </li>
 
                       ))
@@ -94,8 +96,8 @@ const entries=products.slice(currentSliceStart,currentSliceEnd)
           )}
       </div>
       <div className='my-16 w-full flex flex-row '>
-        {currentSliceStart >= 4 && <button className='mx-auto  px-4 py-2 text-white rounded-lg bg-gradient-to-br from-blue-300 to-rose-400' onClick={previousPage}>vorig</button>}
-        {currentSliceEnd < products.length && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>volgende</button>}
+        {currentSliceStart >= 4 && <button className='mx-auto  px-4 py-2 text-white rounded-lg bg-gradient-to-br from-blue-300 to-rose-400' onClick={previousPage}>{lang=='du'?'vorig':(lang=='ar'?'':'')}</button>}
+        {currentSliceEnd < products.length && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>{lang=='du'?'volgende':(lang=='ar'?'':'')}</button>}
       </div>
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>
@@ -105,7 +107,7 @@ const entries=products.slice(currentSliceStart,currentSliceEnd)
 
 export const getServerSideProps = async () => {
 
-  const query = '*[_type == "product"]{_id,product_name,product_image,price,slug,description,category->{category}}'
+  const query = '*[_type == "product"]{_id,product_name,product_image,price,slug,description,category->{category},arabic_name}'
   const bannerQuery = '*[_type == "banner"]{banner_image,buttonText,smallText,desc,midText,largeText,largeText2,saleTime,discount,product->}'
   const catQuery = '*[_type == "category"]'
 

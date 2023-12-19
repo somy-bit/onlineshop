@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const [showLogout, setShowLogout] = useState(false);
 
-  const { totalQuantity, showCart, setShowCart, user, setUser } = useStateContext();
+  const { totalQuantity, showCart, setShowCart, user, setUser,setLang } = useStateContext();
   return (
     <div className='navbar-container '>
       <div className='flex flex-row items-center justify-around space-x-4'>
@@ -22,6 +22,8 @@ const Navbar = () => {
           <Link href="/about" >OVER ONS</Link>
 
         </p>
+        <bottun type='button' onClick={()=>setLang('ar')}>arabic</bottun>
+        <bottun type='button' onClick={()=>setLang('du')}>dutch</bottun>
 
       </div>
 

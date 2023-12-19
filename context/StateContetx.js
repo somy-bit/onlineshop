@@ -12,6 +12,8 @@ export const StateContext = ({ children }) => {
     const [qty, setQty] = useState(1);
     const [user,setUser] =useState(null);
     const [admin,setAdmin] = useState(null)
+    const [lang,setLang] = useState('ar')
+
 
     let foundItem;
     let index;
@@ -94,7 +96,7 @@ export const StateContext = ({ children }) => {
             setShowCart, qty, incQty, decQty, onAdd,
             toggleCartItemQuantity,onRemove,
             setCartItems,setTotalPrice,setTotalQuantity,
-            user,setUser,admin,setAdmin
+            user,setUser,admin,setAdmin,lang,setLang
         }}>
             {children}
         </Context.Provider>
