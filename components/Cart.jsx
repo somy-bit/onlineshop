@@ -4,20 +4,26 @@ import { FaAngleLeft, FaMinus, FaPlus, FaShoppingBasket } from "react-icons/fa";
 import { TiDeleteOutline } from 'react-icons/ti'
 import { useStateContext } from '../context/StateContetx';
 import { urlFor } from '../lib/client'
-
-
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 const Cart = () => {
 
     const cartRef = useRef();
+    const router  = useRouter();
 
 
     const sendToRegister =(e)=>{
         setShowCart(false)
+        if(!user){
+            toast.error('please log in to continue shopping',4000)
+        }else{
+            router.push('/registerOrder')
+        }
     }
 
     const { totalQuantity, totalPrice, cartItems, 
-        setShowCart, toggleCartItemQuantity, onRemove} = useStateContext();
+        setShowCart, toggleCartItemQuantity, onRemove,user} = useStateContext();
     return (
         <div className='cart-wrapper' ref={cartRef}>
             <div className='cart-container'>
@@ -101,7 +107,7 @@ const Cart = () => {
                             type='button'
                             onClick={sendToRegister}
                             >
-                            <Link href='/registerOrder'>registreer uw aankoop</Link></button>
+                           registreer uw aankoop</button>
                         </div>
                     </div>
                 )}

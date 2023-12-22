@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState} from 'react'
 import { toast } from 'react-hot-toast'
 
 const Context = createContext();
@@ -12,7 +12,7 @@ export const StateContext = ({ children }) => {
     const [qty, setQty] = useState(1);
     const [user,setUser] =useState(null);
     const [admin,setAdmin] = useState(null)
-    const [lang,setLang] = useState('ar')
+    const [lang,setLang] = useState('du')
 
 
     let foundItem;

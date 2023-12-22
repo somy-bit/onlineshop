@@ -25,6 +25,12 @@ export default{
 
         },
         {
+            name:"persian_name",
+            title :"persian Name",
+            type:"string"
+
+        },
+        {
             name:"slug",
             title:"Slug",
             type:"slug",
@@ -49,6 +55,18 @@ export default{
             name:"description",
             title:"description",
             type:"string"
-        }
+        },
+        {
+            name:"arabic_desc",
+            title :"arabic description",
+            type:"string"
+
+        },
+        {
+            name:"persian_desc",
+            title :"persian description",
+            type:"string"
+
+        },
     ]
 }

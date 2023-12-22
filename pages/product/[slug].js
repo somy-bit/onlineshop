@@ -5,16 +5,33 @@
  import {Product} from "../../components";
  import {useState} from 'react';
  import { useStateContext } from '../../context/StateContetx';
+ import toast from 'react-hot-toast';
 
  const ProductDetails = ({product ,otherProducts}) => {
 
-    const {product_name,product_image,price,description} = product;
+    
+    const {product_name,product_image,price,description,arabic_name,persian_name} = product;
     const [index,setIndex] = useState(0);
-    const {incQty,decQty,qty,onAdd,setShowCart} = useStateContext();
+    const {incQty,decQty,qty,onAdd,setShowCart,user,lang} = useStateContext();
 
     const onBuyNow =(product,qty)=>{
-        onAdd(product,qty);
-        setShowCart(true);
+
+        if(user){
+             onAdd(product,qty);
+             setShowCart(true);
+        }else{
+            toast.error('please log in to continue shopping')
+        }
+       
+    }
+
+    const addProduct = ()=>{
+        if(user){
+            onAdd(product,qty);
+        }else{
+            toast.error('please log in to continue shopping')
+
+        }
     }
 
    return (
@@ -33,7 +50,7 @@
             </div>
         </div>
         <div className='product-detail-desc'>
-            <h1>{product_name}</h1>
+            <h1>{lang=='du'?product_name:(lang=='ar'?arabic_name:persian_name)}</h1>
             <div className='reviews'>
                 <div className='flex flex-row'>
                     <FaStar />
@@ -47,7 +64,7 @@
             <p className='price'>${price}</p>
 
             <div className='space-y-2 quantity'>
-                <h3>kwantiteit:</h3>
+                <h3>{lang=='du'?'kwantiteit:':(lang=='ar'?'كمية':'تعداد :')}</h3>
                 <p className='flex flex-row quantity-desc'>
                     <span className='minus' onClick={decQty}>
                         <FiMinus />
@@ -63,18 +80,18 @@
 
             <div className='buttons'>
 
-                 <button type='button' onClick={()=>onAdd(product,qty)} className='add-to-cart'>Voeg toe aan winkelkar</button>
-                 <button type='button' onClick={()=>onBuyNow(product,qty)} className='buy-now'>koop nu</button>
+                 <button type='button' onClick={addProduct} className='add-to-cart'>{lang=='du'?'voeg het toe':(lang=='ar'?'إضافته':'اضافه کن')}</button>
+                 <button type='button' onClick={()=>onBuyNow(product,qty)} className='buy-now'>{lang=='du'?'koop nu':(lang=='ar'?'اشتري الآن':'الان بخر')}</button>
 
             </div>
 
-            <h4 className='mt-4 font-semibold'>Details:</h4>
+            <h4 className='mt-4 font-semibold'>{lang=='du'?'Details:':(lang=='ar'?'تفاصيل':'جزئیات :')}</h4>
             <p className='text-gray-500'>{description}</p>
         </div>
        </div>
 
        <div className='maylike-products-wrapper'>
-        <h2>vergelijkbare producten:</h2>
+        <h2>{lang=='du'?'vergelijkbare producten':(lang=='ar'?'منتجات مماثلة':'محصولات مشابه')}</h2>
         <div className='marquee'>
             <div className='track maylike-products-container'>
                 {otherProducts.map((item)=>(
