@@ -18,6 +18,8 @@ const Register = () => {
     const [street, setStreet] = useState('')
     const [block, setBlock] = useState('')
     const [no, setNo] = useState('')
+    const [isReg, setIsReg] = useState(false)
+
 
 
 
@@ -25,6 +27,7 @@ const Register = () => {
     const registerUser = async (e) => {
 
         e.preventDefault();
+        setIsReg(true)
 
         let address = {
             city: city,
@@ -51,9 +54,10 @@ const Register = () => {
                 method: 'POST',
                 body: JSON.stringify(newUser),
             });
-
+            
             const dat = await res.json();
-            toast.success(dat.msg,{duration:3000})
+            setIsReg(false)
+            toast.success(lang=='du'?dat.msg_du:(lang=='ar'?dat.msg_ar:dat.msg_fa),{duration:3000})
             if (res.status == '200') {
                 setUser({ ...newUser, _id: dat.id });
                 router.replace('/')
@@ -104,7 +108,7 @@ const Register = () => {
                         <input type='text' className='p-3 border-gray-300 rounded-lg' value={secretKey} onChange={(e) => setSecretKey(e.target.value)} placeholder='your admin key ...' />
 
                     </div>}
-                <button className='text-white font-semibold uppercase bg-red-500 rounded-xl w-full py-2' type='button' onClick={(e) => registerUser(e)}>{lang=='du'?'aanmelden':(lang=='ar'?'اشتراك':'ثبت نام')}</button>
+                <button className='text-white font-semibold uppercase bg-red-500 rounded-xl w-full py-2' type='button' disabled={isReg} onClick={(e) => registerUser(e)}>{lang=='du'?'aanmelden':(lang=='ar'?'اشتراك':'ثبت نام')}</button>
 
                 <div className=''>
                     <label className='text-gray-400 text-xs mr-1'>{lang=='du'?'beheerder':(lang=='ar'?'مسؤل':'مدیر')} </label>

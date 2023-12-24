@@ -40,8 +40,8 @@ export const StateContext = ({ children }) => {
             setCartItems([...cartItems, { ...product }])
 
         }
-
-        toast.success(`${qty} ${product.product_name} toegevoegd aan de winkelwagen`,{duration:2000});
+        let msg = lang=='du'?'toegevoegd aan de winkelwagen':(lang=='ar'?'تضاف إلى سلة التسوق':'به سبد خرید اضافه شد')
+        toast.success(`${qty} ${product.product_name} ${msg} `,{duration:2000});
     }
 
     const onRemove =(product)=>{

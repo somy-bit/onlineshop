@@ -32,7 +32,7 @@ const Login = () => {
                 console.log(data.user);
 
             } else if (res.status == '500') {
-                toast.error(data.msg, { duration: 4000 })
+                toast.error(lang=='du'?data.msg_du:(lang=='ar'?data.msg_ar:data.msg_fa), { duration: 4000 })
             }
         }else if(userType == 'admin'){
 
@@ -54,7 +54,7 @@ const Login = () => {
                 console.log(data.user);
 
             } else if (res.status == '500') {
-                toast.error(data.msg, { duration: 4000 })
+                toast.error(lang=='du'?data.msg_du:(lang=='ar'?data.msg_ar:data.msg_fa), { duration: 4000 })
             }
 
         }

@@ -7,6 +7,7 @@ import { useAtom } from 'jotai'
 import CategoryList from '@/components/CategoryList'
 import { useStateContext } from '../context/StateContetx'
 import { testForNull } from '../lib/utils'
+import Headnav from '@/components/Headnav'
 
 
 
@@ -44,6 +45,7 @@ const {lang} = useStateContext();
   }
   return (
     <>
+    <Headnav />
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
         <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>{lang=='ar'?' منتجات السوق آقاجون':(lang=='du'?'AghaJoon Market Produce':'محصولات آقاجون مارکت')}</h1>
