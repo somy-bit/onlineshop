@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Link from "next/link"
-import { FiShoppingCart, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiShoppingCart} from "react-icons/fi";
 import { Cart } from './'
 import { useStateContext } from '../context/StateContetx';
 
@@ -11,7 +11,7 @@ const Navbar = () => {
 
 
 
-  const { totalQuantity, showCart, setShowCart, setCartItems } = useStateContext();
+  const { totalQuantity, showCart, setShowCart, user } = useStateContext();
   return (
     <div>
 
@@ -25,12 +25,14 @@ const Navbar = () => {
         </div>
 
         <div className='flex flex-row space-x-4 items-center'>
-   
 
-          <button type="button" className='cart-icon' onClick={() => setShowCart(true)}>
-            <FiShoppingCart size={25} />
-            <span className='cart-item-qty'>{totalQuantity}</span>
-          </button>
+          {user &&
+            <button type="button" className='cart-icon' onClick={() => setShowCart(true)}>
+              <FiShoppingCart size={25} />
+              <span className='cart-item-qty'>{totalQuantity}</span>
+            </button>
+          }
+
 
         </div>
 
@@ -38,8 +40,8 @@ const Navbar = () => {
         {showCart && <Cart />}
 
       </div>
-   
-  
+
+
     </div>
 
   )

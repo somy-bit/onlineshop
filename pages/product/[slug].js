@@ -135,6 +135,7 @@
     const product = await client.fetch(query)
     console.log(product)
     const otherProducts = await client.fetch(otherQuery)
+    
   
     return{
       props:{product,otherProducts}
