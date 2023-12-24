@@ -7,7 +7,7 @@ import { useAtom } from 'jotai'
 import CategoryList from '@/components/CategoryList'
 import { useStateContext } from '../context/StateContetx'
 import { testForNull } from '../lib/utils'
-import Headnav from '@/components/Headnav'
+import Headnav from '../components/Headnav'
 
 
 
@@ -30,7 +30,7 @@ const Home = ({ products, bannerData, categories }) => {
     setCurrentPage(currentPage - 1)
   }
 
-const entries=products?.slice(currentSliceStart,currentSliceEnd)
+
 
 const {lang} = useStateContext();
 
@@ -42,6 +42,11 @@ const {lang} = useStateContext();
 
   const filterData = (category) => {
     setFilter(category);
+    setShowlist(false);
+    setCurrentSliceStart(0);
+    setCurrentSliceEnd(4);
+    setCurrentPage(1)
+  
   }
   return (
     <>
@@ -70,7 +75,7 @@ const {lang} = useStateContext();
 
                       {categories?.slice(6, categories.length).map((item, i) =>
                       (<li key={i}>
-                        <p onClick={() => {filterData(item?.category);setShowlist(false)}} className="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{lang=='du'?item.category:(lang=='ar'?item.arabic_cat:item.persian_cat)}</p>
+                        <p onClick={() => {filterData(item?.category)}} className="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{lang=='du'?item.category:(lang=='ar'?item.arabic_cat:item.persian_cat)}</p>
                       </li>
 
                       ))
@@ -93,7 +98,7 @@ const {lang} = useStateContext();
           products?.filter((item) => (item.category.category == filters)).slice(currentSliceStart,currentSliceEnd).map((pro) => <Product key={pro._id}
             product={pro} />)
           :
-          entries?.map((product) => <Product key={product._id}
+          products?.slice(currentSliceStart,currentSliceEnd).map((product) => <Product key={product._id}
             product={product} />
           )}
       </div>

@@ -18,13 +18,21 @@ export const StateContext = ({ children }) => {
     let foundItem;
     let index;
 
-    
+    const sum = (a, b, positions) => {
+        const factor = Math.pow(10, positions)
+        return (a.toFixed(positions) * factor + b.toFixed(positions) * factor) / factor
+      }
+      const minus = (a, b, positions) => {
+        const factor = Math.pow(10, positions)
+        return (a.toFixed(positions) * factor - b.toFixed(positions) * factor) / factor
+      }
+
 
     const onAdd = (product, quantity) => {
 
 
         const checkProductInCart = cartItems.find((item) => item._id === product._id)
-        setTotalPrice((prevPrice) => (prevPrice + product.price * quantity).toFixed(2))
+        setTotalPrice((prevPrice) => sum(prevPrice,product.price * quantity,4))
         setTotalQuantity((prevQty) => prevQty + quantity)
 
         if (checkProductInCart) {
@@ -48,7 +56,7 @@ export const StateContext = ({ children }) => {
 
         const newItems = cartItems.filter((item)=>item._id!== product._id)
 
-        setTotalPrice((prevToP)=>(prevToP-product.price*product.quantity).toFixed(2))
+        setTotalPrice((prevToP)=>(minus(prevToP,product.price*product.quantity,4)))
         setTotalQuantity((prevToQ)=>prevToQ-product.quantity)
 
         setCartItems(newItems)
@@ -64,14 +72,14 @@ export const StateContext = ({ children }) => {
 
             let newCartItems = [...newCArtItem.slice(0,index), { ...foundItem, 'quantity': foundItem.quantity + 1 },...newCArtItem.slice(index)]
             setCartItems(newCartItems)
-            setTotalPrice((prevToP) => (prevToP + foundItem.price).toFixed(2))
+            setTotalPrice((prevToP) => sum(prevToP , foundItem.price,4))
             setTotalQuantity((prevToQ) => prevToQ + 1)
 
         } else if (value == 'dec') {
             if (foundItem.quantity > 1) {
                 let newCartItems = [...newCArtItem.slice(0,index), { ...foundItem, 'quantity': foundItem.quantity - 1 },...newCArtItem.slice(index)]
                 setCartItems(newCartItems)
-                setTotalPrice((prevToP) =>(prevToP - foundItem.price).toFixed(2))
+                setTotalPrice((prevToP) =>minus(prevToP , foundItem.price,4))
                 setTotalQuantity((prevToQ) => prevToQ - 1)
             }
         }
