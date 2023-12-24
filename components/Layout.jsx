@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
   const router = useRouter();
   const hidNav = router.pathname == "/registerOrder" || router.pathname == "/about" || router.pathname == '/success' || router.pathname == '/login' || router.pathname == '/registerNewUser' || router.pathname == '/admin';
   const isHome = router.pathname == '/'
-  const hideFooter = router.pathname == '/admin'
+  const showFooter = router.pathname == '/'
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
         :
         <div className='layout'>
           <Head>
-            <title>aghajoon afghan market</title>
+            <title>aghajoon supermarket</title>
           </Head>
           <header>
             {!hidNav && <Navbar />}
@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
 
           <footer>
 
-            {!hideFooter && <Footer />}
+            {showFooter? <Footer />:<div className='h-24'></div>}
             
           </footer>
         </div>

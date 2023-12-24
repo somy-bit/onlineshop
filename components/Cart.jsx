@@ -23,7 +23,7 @@ const Cart = () => {
     }
 
     const { totalQuantity, totalPrice, cartItems, 
-        setShowCart, toggleCartItemQuantity, onRemove,user} = useStateContext();
+        setShowCart, toggleCartItemQuantity, onRemove,user,lang} = useStateContext();
     return (
         <div className='cart-wrapper' ref={cartRef}>
             <div className='cart-container'>
@@ -33,20 +33,20 @@ const Cart = () => {
                     onClick={() => setShowCart(false)}
                 >
                     <FaAngleLeft />
-                    <span className='heading'>jouw winkelwagen</span>
-                    <span className='cart-num-items'>({totalQuantity} artikelen)</span>
+                    <span className='heading'>{lang=='du'?'jouw winkelwagen':(lang=='ar'?'سلة التسوق الخاصة بك':'سبد خرید شما')}</span>
+                    <span className='cart-num-items'>({totalQuantity} {lang=='du'?'item':(lang=='ar'?'مادة':'مورد')})</span>
                 </button>
 
                 {cartItems.length < 1 && (
                     <div className='empty-cart flex flex-col items-center'>
                         <FaShoppingBasket size={150} />
-                        <h3 >Jouw mandje is leeg</h3>
+                        <h3 >{lang=='du'?'Jouw mandje is leeg':(lang=='ar'?'سلتك فارغة':'سبد شما خالی است')}</h3>
                         <Link href='/'>
                             <button
                                 className='btn'
                                 type='button'
                                 onClick={() => setShowCart(false)}
-                            >doorgaan met winkelen</button>
+                            >{lang=='du'?'doorgaan met winkelen':(lang=='ar'?'مواصلة التسوق':'ادامه خرید')}</button>
                         </Link>
                     </div>
                 )}
@@ -86,7 +86,7 @@ const Cart = () => {
                                         className='flex flex-row justify-between items-center text-lg  '
                                         onClick={()=>onRemove(item)}>
                                         <TiDeleteOutline />
-                                        <p>Verwijder voorwerp</p>
+                                        <p>{lang=='du'?'verwijder het artikel':(lang=='ar'?'احذف العنصر':'مورد را حذف کنید')}</p>
                                     </button>
                                     </>
                                 </div>
@@ -98,8 +98,8 @@ const Cart = () => {
                 {cartItems.length >=1 && (
                     <div className='cart-bottom'>
                         <div className='total'>
-                            <h3>Subtotaal:</h3>
-                            <h3>${totalPrice}</h3>
+                            <h3>{lang=='du'?'totaal :':(lang=='ar'?' المجموع :':'جمع :')}</h3>
+                            <h3>€{totalPrice}</h3>
                         </div>
                         <div className='btn-container'>
                             <button 
@@ -107,7 +107,7 @@ const Cart = () => {
                             type='button'
                             onClick={sendToRegister}
                             >
-                           registreer uw aankoop</button>
+                          {lang=='du'?'registreer uw aankoop':(lang=='ar'?'سجل عملية الشراء الخاصة بك':'خرید خود را ثبت کنید')}</button>
                         </div>
                     </div>
                 )}

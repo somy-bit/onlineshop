@@ -66,14 +66,14 @@ const form =useRef();
 
     return (
         <form ref={form} className='flex flex-col items-center justify-center'>
-            <input type='text' placeholder='uw naam..' value={name} name='name' onChange={(e) => setName(e.target.value)} className='border-b-2 w-full border-blue-300 p-3' required />
-            <input type='number' name='phone' placeholder='jouw telefoon nummer..' onChange={(e) => setPhone(e.target.value)} value={phone} className=' border-b-2 w-full border-blue-300 p-3' required />
-            <input type='email' placeholder='jouw e-mailadres..' name='email' onChange={(e) => setEmail(e.target.value)} value={email} className='border-b-2 w-full border-blue-300 p-3' />
+            <input type='text' placeholder='uw naam..' value={name} name='name' disabled className='border-b-2 w-full border-blue-300 p-3' required />
+            <input type='number' name='phone' placeholder='jouw telefoon nummer..'  disabled value={phone} className=' border-b-2 w-full border-blue-300 p-3' required />
+            <input type='email' placeholder='jouw e-mailadres..' name='email' disabled value={email} className='border-b-2 w-full border-blue-300 p-3' />
             <input type='text' placeholder='Uw stad..' onChange={(e) => setCity(e.target.value)} value={city} className='border-b-2 w-full border-blue-300 p-3' required />
             <input type='text' placeholder='jouw straat..' onChange={(e) => setStreet(e.target.value)} value={street} className='border-b-2 w-full border-blue-300 p-3' required />
             <input type='text' placeholder='jouw blok..' onChange={(e) => setBlock(e.target.value)} value={block} className='border-b-2 w-full border-blue-300 p-3' required />
             <input type='text' placeholder='andere details..' onChange={(e) => setNo(e.target.value)} value={no} className='border-b-2 w-full border-blue-300 p-3' required />
-            <button className='btn'  onClick={(e)=>sendData(e)}>{lang=='du'?'ANKOOP':(lang=='ar'?'':'بخر')}</button>
+            <button className='btn'  onClick={(e)=>sendData(e)}>{lang=='du'?'ANKOOP':(lang=='ar'?'اشترى':'بخر')}</button>
 {
     summery?.map((item)=>(
         

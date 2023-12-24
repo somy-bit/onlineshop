@@ -61,7 +61,7 @@
                 </div>
                 <p>(20)</p>
             </div>
-            <p className='price'>${price}</p>
+            <p className='price'>€{price}</p>
 
             <div className='space-y-2 quantity'>
                 <h3>{lang=='du'?'kwantiteit:':(lang=='ar'?'كمية':'تعداد :')}</h3>

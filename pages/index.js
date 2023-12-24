@@ -6,7 +6,7 @@ import { sliceStartAtom, sliceEndAtom, currentPageAtom } from '../storage/atoms'
 import { useAtom } from 'jotai'
 import CategoryList from '@/components/CategoryList'
 import { useStateContext } from '../context/StateContetx'
-
+import { testForNull } from '../lib/utils'
 
 
 
@@ -50,7 +50,7 @@ const {lang} = useStateContext();
         <div className='sm:hidden xs:hidden md:block max-w-5xl relative px-4 mx-auto'>
           <div className='flex flex-row space-x-8  justify-start mt-10 overflow-x-scroll  '>
 
-            <div onClick={() => filterData()} className='cursor-pointer text-gray-700 font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-xl'>{lang=='fa'?'همه':(lang=='du'?'Alle':'الجميع')}</div>
+            <div onClick={() => filterData()} className='cursor-pointer text-gray-700 flex justify-center items-center font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-xl'>{lang=='fa'?'همه':(lang=='du'?'Alle':'الجميع')}</div>
 
             {categories?.slice(0, 6).map((item, i) => (
               <CategoryList filterData={filterData} item={item} key={i}/>))
@@ -119,9 +119,16 @@ export const getServerSideProps = async () => {
 
 
   products.map(item => {
+    if(item.category)
     if (!item.category.category)
       item.category.category = '';
+
+      if(!item.slug){
+        item.slug={current:item._id,_type:'slug'}
+      }
   })
+
+  testForNull(products);
 
 
   return {

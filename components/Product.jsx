@@ -32,7 +32,7 @@ const Product = ({ product}) => {
           
 
 
-          <p className='product-price'>$ {price}</p>
+          <p className='product-price'>€ {price}</p>
 
 
 
