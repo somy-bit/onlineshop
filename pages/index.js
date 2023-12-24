@@ -70,7 +70,7 @@ const {lang} = useStateContext();
 
                       {categories?.slice(6, categories.length).map((item, i) =>
                       (<li key={i}>
-                        <p onClick={() => filterData(item?.category)} className="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{lang=='du'?item.category:(lang=='ar'?item.arabic_cat:item.persian_cat)}</p>
+                        <p onClick={() => {filterData(item?.category);setShowlist(false)}} className="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{lang=='du'?item.category:(lang=='ar'?item.arabic_cat:item.persian_cat)}</p>
                       </li>
 
                       ))
@@ -99,7 +99,7 @@ const {lang} = useStateContext();
       </div>
       <div className='my-16 w-full flex flex-row '>
         {currentSliceStart >= 4 && <button className='mx-auto  px-4 py-2 text-white rounded-lg bg-gradient-to-br from-blue-300 to-rose-400' onClick={previousPage}>{lang=='du'?'vorig':(lang=='ar'?'سابق':'قبلی')}</button>}
-        {currentSliceEnd < products?.length && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>{lang=='du'?'volgende':(lang=='ar'?'التالي':'بعد')}</button>}
+        {currentSliceEnd <(filters?products?.filter((item) => (item.category.category == filters)).length :products?.length ) && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>{lang=='du'?'volgende':(lang=='ar'?'التالي':'بعد')}</button>}
       </div>
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>

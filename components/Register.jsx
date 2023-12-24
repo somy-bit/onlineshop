@@ -42,7 +42,7 @@ const Register = () => {
             user_type: userType,
             password: password,
             phone: phone,
-            email: email,
+            email: email.toLowerCase(),
             address: address,
         }
 
