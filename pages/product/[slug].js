@@ -97,7 +97,7 @@ const ProductDetails = ({ product, otherProducts }) => {
                 <div className='marquee'>
                     <div className='track maylike-products-container'>
                         {otherProducts.filter(i => (i.category.category == product.category.category)).map((item) => (
-                            <div className='h-36 w-32'>
+                            <div key={item._id} className='h-36 w-32'>
                                 <Product key={item._id} product={item} />
                             </div>
                         ))}
