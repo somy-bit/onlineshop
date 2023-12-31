@@ -2,6 +2,7 @@ import React, { useState,useRef } from 'react'
 import { useStateContext } from '../context/StateContetx'
 import {useRouter} from 'next/router';
 import emailjs from '@emailjs/browser';
+import { strings } from '@/strings';
 
 const UserForm = () => {
    
@@ -14,6 +15,7 @@ const form =useRef();
     const [street, setStreet] = useState(user?.address.street);
     const [block, setBlock] = useState(user?.address.block);
     const [no, setNo] = useState(user?.address.no);
+    const [disable, setDisable] = useState(false);
 
 
     let summery = []
@@ -25,6 +27,7 @@ const form =useRef();
 
     const sendData = async (e) => {
         e.preventDefault();
+        setDisable(true)
 
         let customer = {
             name: name,
@@ -66,14 +69,14 @@ const form =useRef();
 
     return (
         <form ref={form} className='flex flex-col items-center justify-center'>
-            <input type='text' placeholder='uw naam..' value={name} name='name' disabled className='border-b-2 w-full border-blue-300 p-3' required />
-            <input type='number' name='phone' placeholder='jouw telefoon nummer..'  disabled value={phone} className=' border-b-2 w-full border-blue-300 p-3' required />
-            <input type='email' placeholder='jouw e-mailadres..' name='email' disabled value={email} className='border-b-2 w-full border-blue-300 p-3' />
-            <input type='text' placeholder='Uw stad..' onChange={(e) => setCity(e.target.value)} value={city} className='border-b-2 w-full border-blue-300 p-3' required />
-            <input type='text' placeholder='jouw straat..' onChange={(e) => setStreet(e.target.value)} value={street} className='border-b-2 w-full border-blue-300 p-3' required />
-            <input type='text' placeholder='jouw blok..' onChange={(e) => setBlock(e.target.value)} value={block} className='border-b-2 w-full border-blue-300 p-3' required />
-            <input type='text' placeholder='andere details..' onChange={(e) => setNo(e.target.value)} value={no} className='border-b-2 w-full border-blue-300 p-3' required />
-            <button className='btn'  onClick={(e)=>sendData(e)}>{lang=='du'?'ANKOOP':(lang=='ar'?'اشترى':'بخر')}</button>
+            <input type='text' placeholder={strings.FULL_NAME[lang]+'...'} value={name} name='name' disabled className='border-b-2 w-full border-blue-300 p-3' required />
+            <input type='number' name='phone' placeholder={strings.TEL_NO_LABEL[lang]+'...'}  disabled value={phone} className=' border-b-2 w-full border-blue-300 p-3' required />
+            <input type='email' placeholder={strings.EMAIL[lang]+'...'} name='email' disabled value={email} className='border-b-2 w-full border-blue-300 p-3' />
+            <input type='text' placeholder={strings.CITY_LBL[lang]+'...'} onChange={(e) => setCity(e.target.value)} value={city} className='border-b-2 w-full border-blue-300 p-3' required />
+            <input type='text' placeholder={strings.STREET_LBL[lang]+'...'} onChange={(e) => setStreet(e.target.value)} value={street} className='border-b-2 w-full border-blue-300 p-3' required />
+            <input type='text' placeholder={strings.BLK_LBL[lang]+'...'} onChange={(e) => setBlock(e.target.value)} value={block} className='border-b-2 w-full border-blue-300 p-3' required />
+            <input type='text' placeholder={strings.REST_ADD_LBL[lang]+'...'} onChange={(e) => setNo(e.target.value)} value={no} className='border-b-2 w-full border-blue-300 p-3' required />
+            <button className='btn' disabled={disable}  onClick={(e)=>sendData(e)}>{strings.PURCHASE[lang]}</button>
 {
     summery?.map((item)=>(
         

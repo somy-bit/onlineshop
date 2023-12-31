@@ -14,16 +14,19 @@
     "@sanity/image-url": "^1.0.1",
     "@stripe/stripe-js": "^1.25.0",
     "animejs": "^3.2.2",
+    "bcrypt": "^5.1.1",
     "canvas-confetti": "^1.5.1",
     "i18next": "^21.0.1",
     "jotai": "^2.6.0",
     "next": "^12.3.4",
+    "next-auth": "^4.24.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hot-toast": "^2.2.0",
     "react-i18next": "^11.12.0",
     "react-icons": "^4.3.1",
-    "stripe": "^8.209.0"
+    "stripe": "^8.209.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",

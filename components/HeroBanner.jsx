@@ -1,8 +1,12 @@
 import React from 'react'
 import {urlFor} from "../lib/client"
+import { strings } from '../strings'
+import { useStateContext } from '../context/StateContetx'
 
 
 const HeroBanner = ({heroBanner}) => {
+
+  const{lang} = useStateContext();
  
   return (
     <div className="hero-banner-container">
@@ -19,7 +23,7 @@ const HeroBanner = ({heroBanner}) => {
           
 
             <div className='desc'>
-                <h5>DESCRIPTION</h5>
+                <h5>{strings.DESC_LBL[lang]}</h5>
                 <p>{heroBanner.desc}</p>
             </div>
         </div>

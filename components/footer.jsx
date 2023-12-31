@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <div className='footer-container'>
       {router.pathname == '/' &&
-        <p className='font-extralight'>
+        <p className='font-extralight text-xs'>
           2023 aghajoonmarket all rights reserved
         </p>
       }

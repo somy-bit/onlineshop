@@ -6,24 +6,27 @@ import { useStateContext } from '../context/StateContetx';
 import { urlFor } from '../lib/client'
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import { strings } from '@/strings';
 
 const Cart = () => {
 
     const cartRef = useRef();
     const router  = useRouter();
 
+    const { totalQuantity, totalPrice, cartItems, 
+        setShowCart, toggleCartItemQuantity, onRemove,user,lang} = useStateContext();
+
 
     const sendToRegister =(e)=>{
         setShowCart(false)
         if(!user){
-            toast.error('please log in to continue shopping',4000)
+            toast.error(strings.LOGIN_PLS_MSG[lang])
         }else{
             router.push('/registerOrder')
         }
     }
 
-    const { totalQuantity, totalPrice, cartItems, 
-        setShowCart, toggleCartItemQuantity, onRemove,user,lang} = useStateContext();
+   
     return (
         <div className='cart-wrapper' ref={cartRef}>
             <div className='cart-container'>
@@ -33,20 +36,20 @@ const Cart = () => {
                     onClick={() => setShowCart(false)}
                 >
                     <FaAngleLeft />
-                    <span className='heading'>{lang=='du'?'jouw winkelwagen':(lang=='ar'?'سلة التسوق الخاصة بك':'سبد خرید شما')}</span>
-                    <span className='cart-num-items'>({totalQuantity} {lang=='du'?'item':(lang=='ar'?'مادة':'مورد')})</span>
+                    <span className='heading'>{strings.BASKET_LBL[lang]}</span>
+                    <span className='cart-num-items'>({totalQuantity} {strings.ITEM_LBL[lang]})</span>
                 </button>
 
                 {cartItems.length < 1 && (
                     <div className='empty-cart flex flex-col items-center'>
                         <FaShoppingBasket size={150} />
-                        <h3 >{lang=='du'?'Jouw mandje is leeg':(lang=='ar'?'سلتك فارغة':'سبد شما خالی است')}</h3>
+                        <h3 >{strings.EMPTY_BASKET[lang]}</h3>
                         <Link href='/'>
                             <button
                                 className='btn'
                                 type='button'
                                 onClick={() => setShowCart(false)}
-                            >{lang=='du'?'doorgaan met winkelen':(lang=='ar'?'مواصلة التسوق':'ادامه خرید')}</button>
+                            >{strings.CONTINUE_SHOP[lang]}</button>
                         </Link>
                     </div>
                 )}
@@ -86,7 +89,7 @@ const Cart = () => {
                                         className='flex flex-row justify-between items-center text-lg  '
                                         onClick={()=>onRemove(item)}>
                                         <TiDeleteOutline />
-                                        <p>{lang=='du'?'verwijder het artikel':(lang=='ar'?'احذف العنصر':'مورد را حذف کنید')}</p>
+                                        <p>{strings.DEL_ITEM[lang]}</p>
                                     </button>
                                     </>
                                 </div>
@@ -98,7 +101,7 @@ const Cart = () => {
                 {cartItems.length >=1 && (
                     <div className='cart-bottom'>
                         <div className='total'>
-                            <h3>{lang=='du'?'totaal :':(lang=='ar'?' المجموع :':'جمع :')}</h3>
+                            <h3>{strings.TOTAL[lang]}</h3>
                             <h3>€{totalPrice}</h3>
                         </div>
                         <div className='btn-container'>
@@ -107,7 +110,7 @@ const Cart = () => {
                             type='button'
                             onClick={sendToRegister}
                             >
-                          {lang=='du'?'registreer uw aankoop':(lang=='ar'?'سجل عملية الشراء الخاصة بك':'خرید خود را ثبت کنید')}</button>
+                          {strings.REG_CART[lang]}</button>
                         </div>
                     </div>
                 )}

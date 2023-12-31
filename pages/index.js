@@ -19,14 +19,14 @@ const Home = ({ products, bannerData, categories }) => {
 
   // the number that is added to the states specifies how many posts are displayed per page
   const nextPage = () => {
-    setCurrentSliceStart(currentSliceStart + 4)
-    setCurrentSliceEnd(currentSliceEnd + 4)
+    setCurrentSliceStart(currentSliceStart + 15)
+    setCurrentSliceEnd(currentSliceEnd + 15)
     setCurrentPage(currentPage + 1)
   }
 
   const previousPage = () => {
-    setCurrentSliceStart(currentSliceStart - 4)
-    setCurrentSliceEnd(currentSliceEnd - 4)
+    setCurrentSliceStart(currentSliceStart - 15)
+    setCurrentSliceEnd(currentSliceEnd - 15)
     setCurrentPage(currentPage - 1)
   }
 
@@ -44,7 +44,7 @@ const {lang} = useStateContext();
     setFilter(category);
     setShowlist(false);
     setCurrentSliceStart(0);
-    setCurrentSliceEnd(4);
+    setCurrentSliceEnd(15);
     setCurrentPage(1)
   
   }
@@ -53,7 +53,7 @@ const {lang} = useStateContext();
     <Headnav />
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
-        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>{lang=='ar'?' منتجات السوق آقاجون':(lang=='du'?'AghaJoon Market Produce':'محصولات آقاجون مارکت')}</h1>
+        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>{lang=='ar'?' منتجات السوق آقاجون':(lang=='du'?'AghaJoon Market Produkte':'محصولات آقاجون مارکت')}</h1>
         <div className='sm:hidden xs:hidden md:block max-w-5xl relative px-4 mx-auto'>
           <div className='flex flex-row space-x-8  justify-start mt-10 overflow-x-scroll  '>
 
@@ -103,8 +103,8 @@ const {lang} = useStateContext();
           )}
       </div>
       <div className='my-16 w-full flex flex-row '>
-        {currentSliceStart >= 4 && <button className='mx-auto  px-4 py-2 text-white rounded-lg bg-gradient-to-br from-blue-300 to-rose-400' onClick={previousPage}>{lang=='du'?'vorig':(lang=='ar'?'سابق':'قبلی')}</button>}
-        {currentSliceEnd <(filters?products?.filter((item) => (item.category.category == filters)).length :products?.length ) && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>{lang=='du'?'volgende':(lang=='ar'?'التالي':'بعد')}</button>}
+        {currentSliceStart >= 4 && <button className='mx-auto  px-4 py-2 text-white rounded-lg bg-gradient-to-br from-blue-300 to-rose-400' onClick={previousPage}>{lang=='du'?'vorherige':(lang=='ar'?'سابق':'قبلی')}</button>}
+        {currentSliceEnd <(filters?products?.filter((item) => (item.category.category == filters)).length :products?.length ) && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>{lang=='du'?'nächste':(lang=='ar'?'التالي':'بعد')}</button>}
       </div>
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>
@@ -114,7 +114,7 @@ const {lang} = useStateContext();
 
 export const getServerSideProps = async () => {
 
-  const query = '*[_type == "product"]{_id,product_name,product_image,price,slug,description,category->{category},arabic_name,persian_name,arabic_desc,persian_desc}'
+  const query = '*[_type == "product"]{_id,product_name,product_image,price,slug,description,category->{category},arabic_name,persian_name,arabic_desc,persian_desc,available}'
   const bannerQuery = '*[_type == "banner"]{banner_image,buttonText,smallText,desc,midText,largeText,largeText2,saleTime,discount,product->}'
   const catQuery = '*[_type == "category"]'
 
@@ -133,6 +133,8 @@ export const getServerSideProps = async () => {
       if(!item.slug){
         item.slug={current:item._id,_type:'slug'}
       }
+
+ 
   })
 
   testForNull(products);

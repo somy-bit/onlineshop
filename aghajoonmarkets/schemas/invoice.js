@@ -1,18 +1,18 @@
 export default{
     name:'orders',
-    title:'Orders',
+    title:'سفارش ها',
     type:'document',
     fields:[
         {
             name:'order',
-            title:'Ordered Proucts',
+            title:'محصولات سفارش داده شده',
             type:'array',
            
             of:[{type:'object',
             fields:[
-                {name:'product_name',title:'Product Name',type:'string'},
-                {name:'qty',title:'Quantity',type:'number'},
-                {name:'price',title:'Price',type:'number'},
+                {name:'product_name',title:'اسم محصول',type:'string'},
+                {name:'qty',title:'تعداد',type:'number'},
+                {name:'price',title:'قیمت',type:'number'},
                 
 
             ]}]
@@ -21,23 +21,23 @@ export default{
         },
         {
             name:'total',
-            title:'Total payment',
+            title:'مجموع',
             type:'number'
         },
         {
             name:'customer',
-            title:'Customer',
+            title:'مشتری',
             type:'object',
             fields:[
-                {name:'name',title:'Name',type:'string'},
-                {name:'phone',title:'Phone',type:'string'},
-                {name:'email',title:'Email',type:'string'},
-                {name:'address',title:'Address',type:'object',
+                {name:'name',title:'نام',type:'string'},
+                {name:'phone',title:'تلفن',type:'string'},
+                {name:'email',title:'ایمیل',type:'string'},
+                {name:'address',title:'ادرس',type:'object',
             fields:[
-                {name:'city',title:'city',type:'string'},
-                {name:'street',title:'Street',type:'string'},
-                {name:'block',title:'Block',type:'string'},
-                {name:'no',title:'Dorr Number',type:'string'},
+                {name:'city',title:'شهر',type:'string'},
+                {name:'street',title:'خیابان',type:'string'},
+                {name:'block',title:'بلوک',type:'string'},
+                {name:'no',title:'بفیه ادرس',type:'string'},
 
             ]
             },
@@ -46,7 +46,7 @@ export default{
         },
         {
             name:'status',
-            title:'is the order sent?',
+            title:'وضعیت سفارش',
             type:'boolean',
 
         }

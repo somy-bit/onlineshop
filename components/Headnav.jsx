@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useStateContext } from '../context/StateContetx';
+import { strings } from '../strings';
 
 const Headnav = () => {
 
@@ -13,10 +14,10 @@ const Headnav = () => {
         <div className='flex flex-row items-center justify-between h-20 w-full'>
             <div className='flex flex-row items-center justify-between flex-grow'>
                 <p className='text-xs w-20 p-3 rounded-md font-bold text-gray-500 hover:text-gray-600 hover:shadow-lg'>
-                    <Link href="/about" >{lang == 'du' ? 'OVER ONS' : (lang == 'ar' ? 'معلومات عنا' : 'درباره ما')}</Link>
+                    <Link href="/about" >{strings.ABOUT_US_LBL[lang]}</Link>
                 </p>
                 <div className='relative flex items-center justify-end w-full'>
-                    <p onClick={() => setShowLang(!showLang)} className='w-20  text-center px-3 py-2 hover:bg-gray-50 hover:shadow-lg shadow-sm cursor-pointer rounded-md'>{lang == 'du' ? 'sprache' : (lang == 'ar' ? 'لغة' : 'زبان')}</p>
+                    <p onClick={() => setShowLang(!showLang)} className='w-20  text-center px-3 py-2 hover:bg-gray-50 hover:shadow-lg shadow-sm cursor-pointer rounded-md'>{strings.LNAGUAGE_LBL[lang]}</p>
                     {showLang && <div className='absolute right-0 flex flex-row justify-center items-center p-2 rounded-md  space-x-3 bg-white '>
                         <bottun type='button' className='cursor-pointer' onClick={() => { setLang('ar'); setShowLang(false) }}>عربي</bottun>
                         <bottun type='button' className='cursor-pointer' onClick={() => { setLang('du'); setShowLang(false) }}>dutch</bottun>
@@ -28,12 +29,12 @@ const Headnav = () => {
             <div>
                 {user ?
                     <div className='flex flex-row justify-around items-center space-x-3 text-gray-500 font-semibold text-md'>
-                        <p className='cursor-pointer p-3' onClick={() => { setUser(null); setCartItems([]);setTotalQuantity(0) }}>{lang == 'du' ? 'Uitloggen' : (lang == 'ar' ? ' خروج' : 'خروج')}</p>
+                        <p className='cursor-pointer p-3' onClick={() => { setUser(null); setCartItems([]);setTotalQuantity(0) }}>{strings.LOGUOT_LBL[lang]}</p>
                         <p >{user.name.length>10?user.name.substring(0,9):user.name}</p>
                     </div>
                     :
                     <Link href='/login' >
-                        <p className='text-gray-500 font-semibold text-md cursor-pointer shadow-sm py-2 px-3 rounded-md hover:bg-gray-50 hover:shadow-lg' >{lang == 'du' ? 'Log in' : (lang == 'ar' ? 'الدخول' : 'ورود')}</p></Link >
+                        <p className='text-gray-500 font-semibold text-md cursor-pointer shadow-sm py-2 px-3 rounded-md hover:bg-gray-50 hover:shadow-lg' >{strings.LOGIN[lang]}</p></Link >
 
                 }
             </div>

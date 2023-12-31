@@ -1,11 +1,11 @@
 export default{
     name:"product",
-    title:"Product",
+    title:"محصولات",
     type:"document",
     fields:[
         {
             name:"product_image",
-            title:"Image",
+            title:"عکس",
             type:"array",
             of:[{ type:"image" }],
             Options:{
@@ -14,19 +14,19 @@ export default{
         },
         {
             name:"product_name",
-            title :"Name",
+            title :"نام المانی",
             type:"string"
 
         },
         {
             name:"arabic_name",
-            title :"Name",
+            title :"نام عربی",
             type:"string"
 
         },
         {
             name:"persian_name",
-            title :"persian Name",
+            title :"نام فارسی",
             type:"string"
 
         },
@@ -41,31 +41,37 @@ export default{
         },
         {
             name:'category',
-            title:'Category',
+            title:'دسته بندی',
             type:'reference',
             to:[{ type: 'category' }]
 
         },
         {
             name:"price",
-            title:"Price",
+            title:"قیمت",
             type:"number"
         },
         {
             name:"description",
-            title:"description",
+            title:"توضیحات المانی",
             type:"string"
         },
         {
             name:"arabic_desc",
-            title :"arabic description",
+            title :"توضیحات عربی",
             type:"string"
 
         },
         {
             name:"persian_desc",
-            title :"persian description",
+            title :"توضیحات فارسی",
             type:"string"
+
+        },
+        {
+            name:"available",
+            title :"موجودی",
+            type:"boolean"
 
         },
     ]

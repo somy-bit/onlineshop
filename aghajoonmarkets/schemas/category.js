@@ -2,23 +2,23 @@ export default {
 
     name: 'category',
     type: 'document',
-    title: 'Category',
+    title: 'دسته بندی ها',
     fields: [{
         name: 'category',
-        title: 'category',
+        title: ' به المانی دسته بندی',
         type: 'string'
     }
         ,
 
     {
         name:'arabic_cat',
-        title:'Arabic category name',
+        title:'دسته بندی به عربی',
         type:'string'
     }
     ,
     {
         name:'persian_cat',
-        title:'Farsi category name',
+        title:'دسته بندی به فارسی',
         type:'string'
     }
     ]

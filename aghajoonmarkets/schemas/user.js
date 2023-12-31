@@ -1,59 +1,59 @@
 export default {
     name: 'user',
-    title: 'user',
+    title: 'مشتری ها',
     type: 'document',
     fields: [
         {
             name: 'name',
-            title: 'Name',
+            title: 'نام',
             type: 'string',
             maxLength: 90,
 
         },
         {
             name: 'user_type',
-            title: 'User Type',
+            title: 'نوع کاربر',
             type: 'string',
         
         },
         {
             name: 'phone',
-            title: 'Phone Number',
+            title: 'شماره تلفن',
             type: 'string'
         },
         {
             name: 'email',
-            title: 'Email',
+            title: 'ایمیل',
             type: 'string'
         },
         {
             name: 'password',
-            title: 'Password',
+            title: 'کلمه عبور',
             type: 'string'
         },
         {
             name: 'address',
-            title: 'Address',
+            title: 'ادرس',
             type: 'document',
             fields: [
                 {
                     name: 'city',
-                    title: 'City',
+                    title: 'شهر',
                     type: 'string'
                 },
                 {
                     name: 'street',
-                    title: 'Street',
+                    title: 'خیابان',
                     type: 'string'
                 },
                 {
                     name: 'block',
-                    title: 'Block',
+                    title: 'بلوک',
                     type: 'string'
                 },
                 {
                     name: 'no',
-                    title: 'No',
+                    title: 'بقیه ادرس',
                     type: 'string'
                 },
 

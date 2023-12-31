@@ -1,5 +1,6 @@
 // src/pages/api/todo.js
 
+import { strings } from "../../strings";
 import { client } from "../../lib/client";
 
 export default async function handler(req, res) {
@@ -26,7 +27,7 @@ export default async function handler(req, res) {
           });
         res
           .status(200)
-          .json({ msg: 'Wir haben Ihre Bestellung erhalten! Vielen Dank, dass Sie sich für uns entschieden haben' })
+          .json({ msg: strings.SUCCESS_ORDER_REG_MSG })
          
           
           
