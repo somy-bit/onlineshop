@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useStateContext } from '../../context/StateContetx';
 import toast from 'react-hot-toast';
 import { strings } from '../../strings';
-import Link from 'next/link';
+
 
 const ProductDetails = ({ product, otherProducts }) => {
 
