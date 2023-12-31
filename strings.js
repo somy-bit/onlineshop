@@ -248,6 +248,11 @@ export const strings={
         'ar':'معلومات عنا',
         'du':'über uns'
     },
+    ADD_CART_MSG:{
+        'fa':'به سبد خرید اضافه شد',
+        'ar':'تضاف إلى سلة التسوق',
+        'du':'erfolgreich zum Warenkorb hinzugefügt'
+    }
 
 
 }

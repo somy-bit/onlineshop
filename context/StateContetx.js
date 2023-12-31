@@ -1,3 +1,4 @@
+import { strings } from '../strings';
 import React, { createContext, useContext, useState} from 'react'
 import { toast } from 'react-hot-toast'
 
@@ -48,8 +49,9 @@ export const StateContext = ({ children }) => {
             setCartItems([...cartItems, { ...product }])
 
         }
-        let msg = lang=='du'?'toegevoegd aan de winkelwagen':(lang=='ar'?'تضاف إلى سلة التسوق':'به سبد خرید اضافه شد')
-        toast.success(`${qty} ${product.product_name} ${msg} `,{duration:2000});
+        let msg =strings.ADD_CART_MSG[lang]
+        let name = lang =='du'?product.product_name:(lang=='ar'?product.arabic_name:product.persian_name)
+        toast.success(`${qty} ${name} ${msg} `,{duration:2000});
     }
 
     const onRemove =(product)=>{
