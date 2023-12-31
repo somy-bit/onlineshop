@@ -54,15 +54,15 @@ const {lang} = useStateContext();
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
         <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>{lang=='ar'?' منتجات السوق آقاجون':(lang=='du'?'AghaJoon Market Produkte':'محصولات آقاجون مارکت')}</h1>
-        <div className='sm:hidden xs:hidden md:block max-w-5xl relative px-4 mx-auto'>
+        <div className=' max-w-5xl relative px-4 mx-auto'>
           <div className='flex flex-row space-x-8  justify-start mt-10 overflow-x-scroll  '>
 
-            <div onClick={() => filterData()} className='cursor-pointer text-gray-700 flex justify-center items-center font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-xl'>{lang=='fa'?'همه':(lang=='du'?'Alle':'الجميع')}</div>
+            <div onClick={() => filterData()} className='cursor-pointer text-gray-700 flex justify-center items-center font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-md'>{lang=='fa'?'همه':(lang=='du'?'Alle':'الجميع')}</div>
 
-            {categories?.slice(0, 6).map((item, i) => (
+            {categories?.slice(0, 5).map((item, i) => (
               <CategoryList filterData={filterData} item={item} key={i}/>))
             }
-            {categories?.length > 6 &&
+            {categories?.length > 5 &&
               <>
 
                 <button onClick={() => setShowlist(!showlist)} className="font-medium rounded-lg" type="button">
@@ -120,24 +120,22 @@ export const getServerSideProps = async () => {
 
 ///give a start empty to those might be null
 
-  const products = await client.fetch(query)
+  const fproduct = await client.fetch(query)
   const bannerData = await client.fetch(bannerQuery)
-  const categories = await client.fetch(catQuery)
-
-
-  products.map(item => {
-    if(item.category)
-    if (!item.category.category)
-      item.category.category = '';
-
-      if(!item.slug){
-        item.slug={current:item._id,_type:'slug'}
-      }
+  const fcategorie = await client.fetch(catQuery)
 
  
-  })
+  
 
-  testForNull(products);
+  const products = fproduct.filter(item=>!Object.values(item).includes(null))
+  const categories = fcategorie.filter(item=>!Object.values(item).includes(null))
+  console.log('filted---------------------->',products)
+  if(bannerData){
+    Object.values(bannerData[0]).map(i=>{
+      if(!i)
+      i=''
+    })
+  }  
 
 
   return {

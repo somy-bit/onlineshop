@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useStateContext } from '../../context/StateContetx';
 import toast from 'react-hot-toast';
 import { strings } from '../../strings';
+import Link from 'next/link';
 
 const ProductDetails = ({ product, otherProducts }) => {
 
@@ -40,7 +41,9 @@ const ProductDetails = ({ product, otherProducts }) => {
             <div className='product-detail-container'>
                 <div>
                     <div className='image-container'>
-                        <img alt='product-image' className={available ? 'product-detail-image' : 'product-detail-image filter grayscale'} src={urlFor(product_image && product_image[index])} />
+                      <a href={urlFor(product_image && product_image[0])}> 
+                      <img   alt='product-image' className={available ? 'product-detail-image' : 'product-detail-image filter grayscale'} src={urlFor(product_image && product_image[index])} />
+                      </a> 
                     </div>
                     <div className='small-images-container'>
                         {product_image?.map((item, i) => (
@@ -96,8 +99,8 @@ const ProductDetails = ({ product, otherProducts }) => {
                 <h2>{strings.SIMILAR_PRO[lang]}</h2>
                 <div className='marquee'>
                     <div className='track maylike-products-container'>
-                        {otherProducts.filter(i => (i.category.category == product.category.category)).map((item) => (
-                            <div key={item._id} className='h-36 w-32'>
+                        {otherProducts.map((item) => (
+                            <div key={item._id} >
                                 <Product key={item._id} product={item} />
                             </div>
                         ))}
@@ -111,14 +114,16 @@ const ProductDetails = ({ product, otherProducts }) => {
 
 export const getStaticPaths = async () => {
 
-    const query = `*[_type == "product"]{
+    const query = `*[_type == "product" && defined(slug.current)]{
         slug{
             current
         }
     }`;
 
-    const otherProducts = await client.fetch(query);
-    const paths = otherProducts.map((product) => ({
+    const pros= await client.fetch(query);
+    
+    
+    const paths = pros.map((product) => ({
         params: {
             slug: product.slug.current
         }
@@ -133,13 +138,14 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params: { slug } }) => {
 
     const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-    const otherQuery = '*[_type == "product"]';
+    const otherQuery = '*[_type == "product" && defined(slug.current)]';
 
-
+    
     const product = await client.fetch(query)
     console.log(product)
-    const otherProducts = await client.fetch(otherQuery)
+    const pros = await client.fetch(otherQuery)
 
+    const otherProducts = pros.filter(item=>!Object.values(item).includes(null))
 
     return {
         props: { product, otherProducts }

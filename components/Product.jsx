@@ -4,8 +4,10 @@ import { urlFor } from "../lib/client"
 import { useStateContext } from '../context/StateContetx'
 import toast from 'react-hot-toast'
 import { strings } from '@/strings'
+import { useRouter } from 'next/router'
 
 const Product = ({ product}) => {
+  const router=useRouter();
 
   const { product_name, slug, product_image, price,_id,arabic_name,persian_name} = product;
 
@@ -20,16 +22,19 @@ const Product = ({ product}) => {
   }
 
   return (
-    <div className='bg-gray-100 rounded-md'>
+    <div className={router.pathname=='/'?'bg-gray-100 rounded-md':'bg-gray-100 rounded-md w-[140px]'}>
       <Link href={`/product/${slug.current}`}>
         <div className='product-card'>
-          <img
-            src={urlFor(product_image && product_image[0])}
-            width={250}
-            height={250}
-            className={product.available ?'product-image':'product-image filter grayscale'}
-            alt='image'
-          />
+          {product_image && 
+             <img
+             src={urlFor(product_image && product_image[0])}
+             width={250}
+             height={250}
+             className={product.available ?'product-image':'product-image filter grayscale'}
+             alt='image'
+            
+           />}
+       
           <p className='product-name'>{lang == 'du'?product_name:(lang=='ar'?arabic_name:persian_name )}</p>
           
 
