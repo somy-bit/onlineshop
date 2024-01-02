@@ -935,7 +935,7 @@ span.text-red {
     position: absolute;
     bottom: 0px;
     right: 0px;
-    width: 90%;
+    width: 100%;
     padding: 15px 10px;
     background-color:white;
   
@@ -943,7 +943,7 @@ span.text-red {
 
   .cart-container {
     height: 100%;
-    width: 400px;
+    width: 100%;
     background-color: white;
     float: right;
     padding: 20px 10px;
