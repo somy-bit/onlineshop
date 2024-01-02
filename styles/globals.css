@@ -461,9 +461,9 @@ span.text-red {
 
 .cart-bottom {
   position: absolute;
-  bottom: 12px;
-  right: 5px;
-  width: 90%;
+  bottom: 0px;
+  right: 0px;
+  width: 100%;
   padding: 25px 65px;
   background-color: white;
   

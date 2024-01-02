@@ -8,7 +8,7 @@ const Headnav = () => {
     const [showLang, setShowLang] = useState(false);
 
 
-    const { user, setUser, setLang, lang ,setCartItems,setTotalQuantity} = useStateContext();
+    const { user, setLang, lang ,logout} = useStateContext();
 
     return (
         <div className='flex flex-row items-center justify-between h-20 w-full'>
@@ -29,7 +29,7 @@ const Headnav = () => {
             <div>
                 {user ?
                     <div className='flex flex-row justify-around items-center space-x-3 text-gray-500 font-semibold text-md'>
-                        <p className='cursor-pointer p-3' onClick={() => { setUser(null); setCartItems([]);setTotalQuantity(0) }}>{strings.LOGUOT_LBL[lang]}</p>
+                        <p className='cursor-pointer p-3' onClick={() => logout()}>{strings.LOGUOT_LBL[lang]}</p>
                         <p >{user.name.length>10?user.name.substring(0,9):user.name}</p>
                     </div>
                     :

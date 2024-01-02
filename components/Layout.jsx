@@ -4,6 +4,7 @@ import Navbar from "./Navbar"
 import Footer from './footer'
 import { useRouter } from 'next/router'
 import SplashScreen from './SplashScreen'
+import Headnav from './Headnav'
 
 
 const Layout = ({ children }) => {
@@ -29,7 +30,12 @@ const Layout = ({ children }) => {
             <title>aghajoon supermarket</title>
           </Head>
           <header>
-            {!hidNav && <Navbar />}
+            {!hidNav && 
+            <>
+            <Navbar />
+            <Headnav/>
+            </>
+            }
 
           </header>
           <main className='main-container'>

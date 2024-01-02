@@ -64,7 +64,7 @@ const Cart = () => {
                             <div className='item-desc'>
                                 <div className='flex  top'>
                                     <h5>{lang=='du'?item.product_name:(lang=='ar'?item.arabic_name:item.persian_name)}</h5>
-                                    <h4>${item.price}</h4>
+                                    <h4>€{item.price}</h4>
                                 </div>
                                 <div className='flex buttom'>
                                     <div>

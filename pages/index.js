@@ -6,17 +6,20 @@ import { sliceStartAtom, sliceEndAtom, currentPageAtom } from '../storage/atoms'
 import { useAtom } from 'jotai'
 import CategoryList from '@/components/CategoryList'
 import { useStateContext } from '../context/StateContetx'
-import { testForNull } from '../lib/utils'
 import Headnav from '../components/Headnav'
 
 
 
 const Home = ({ products, bannerData, categories }) => {
 
+const {lang,user} = useStateContext();
+
+
   const [currentSliceStart, setCurrentSliceStart] = useAtom(sliceStartAtom)
   const [currentSliceEnd, setCurrentSliceEnd] = useAtom(sliceEndAtom)
   const [currentPage, setCurrentPage] = useAtom(currentPageAtom)
 
+  
   // the number that is added to the states specifies how many posts are displayed per page
   const nextPage = () => {
     setCurrentSliceStart(currentSliceStart + 15)
@@ -32,7 +35,6 @@ const Home = ({ products, bannerData, categories }) => {
 
 
 
-const {lang} = useStateContext();
 
   const [filters, setFilter] = useState();
   const [showlist, setShowlist] = useState(false)
@@ -50,7 +52,7 @@ const {lang} = useStateContext();
   }
   return (
     <>
-    <Headnav />
+  
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
         <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>{lang=='ar'?' منتجات السوق آقاجون':(lang=='du'?'AghaJoon Market Produkte':'محصولات آقاجون مارکت')}</h1>

@@ -57,11 +57,11 @@ const Login = () => {
             <form className='w-full  p-5 max-w-2xl space-y-4 rounded-xl  bg-gray-200 shadow-lg '>
                 <div className='flex flex-col justify-start space-y-2'>
                     <label>{strings.ENTER_EMAIL_LABEL[lang]} :</label>
-                    <input type='text' className='p-3 border-gray-300 rounded-lg' id='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder={strings.EMAIL[lang]+'...'} />
+                    <input type='text' className='p-3 border-gray-300 rounded-lg' id='email' name='email' value={email||''} onChange={(e) => setEmail(e.target.value)} placeholder={strings.EMAIL[lang]+'...'} />
                 </div>
                 <div className='flex flex-col justify-start space-y-2'>
                     <label>{strings.ENTER_PASS_LABEL[lang]} :</label>
-                    <input type='password' className='p-3 border-gray-300 rounded-lg' id='password' name='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder={strings.PASSWRD[lang]+'...'} />
+                    <input type='password' className='p-3 border-gray-300 rounded-lg' id='password' name='password' value={password||''} onChange={(e) => setPassword(e.target.value)} placeholder={strings.PASSWRD[lang]+'...'} />
                 </div>
                
               
