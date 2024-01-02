@@ -12,13 +12,14 @@ import Headnav from '../components/Headnav'
 
 const Home = ({ products, bannerData, categories }) => {
 
-const {lang,user} = useStateContext();
+const {lang} = useStateContext();
 
 
   const [currentSliceStart, setCurrentSliceStart] = useAtom(sliceStartAtom)
   const [currentSliceEnd, setCurrentSliceEnd] = useAtom(sliceEndAtom)
   const [currentPage, setCurrentPage] = useAtom(currentPageAtom)
 
+  const[data,setdata] = useState(products)
   
   // the number that is added to the states specifies how many posts are displayed per page
   const nextPage = () => {
@@ -36,30 +37,33 @@ const {lang,user} = useStateContext();
 
 
 
-  const [filters, setFilter] = useState();
   const [showlist, setShowlist] = useState(false)
 
   
 
 
   const filterData = (category) => {
-    setFilter(category);
+    //setFilter(category);
+    setdata(products?.filter((item) => (item.category.category == category)))
     setShowlist(false);
     setCurrentSliceStart(0);
     setCurrentSliceEnd(15);
     setCurrentPage(1)
   
   }
+  const setSaleData=()=>{
+    setdata(products?.filter((item) => (item.in_sale == true)))
+  }
   return (
     <>
   
-      <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
+      <HeroBanner offdata={setSaleData} heroBanner={bannerData.length && bannerData[0]} />
       <div className='products-heading'>
-        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>{lang=='ar'?' منتجات السوق آقاجون':(lang=='du'?'AghaJoon Market Produkte':'محصولات آقاجون مارکت')}</h1>
+        <h1 className='text-gray-800 shadow-sm text-3xl pb-8 font-semibold'>{lang=='ar'?'سوبر ماركت اغاجون':(lang=='du'?'AghaJoon Supermarkt':'سوپرمارکت آقاجون')}</h1>
         <div className=' max-w-5xl relative px-4 mx-auto'>
           <div className='flex flex-row space-x-8  justify-start mt-10 overflow-x-scroll  '>
 
-            <div onClick={() => filterData()} className='cursor-pointer text-gray-700 flex justify-center items-center font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-md'>{lang=='fa'?'همه':(lang=='du'?'Alle':'الجميع')}</div>
+            <div onClick={() => setdata(products)} className='cursor-pointer text-gray-700 flex justify-center items-center font-semibold align-center text-center w-24 p-4 bg-red-200 rounded-md'>{lang=='fa'?'همه':(lang=='du'?'Alle':'الجميع')}</div>
 
             {categories?.slice(0, 5).map((item, i) => (
               <CategoryList filterData={filterData} item={item} key={i}/>))
@@ -96,17 +100,14 @@ const {lang,user} = useStateContext();
       </div>
 
       <div className='products-container'>
-        {filters ?
-          products?.filter((item) => (item.category.category == filters)).slice(currentSliceStart,currentSliceEnd).map((pro) => <Product key={pro._id}
+        {
+          data.slice(currentSliceStart,currentSliceEnd).map((pro) => <Product key={pro._id}
             product={pro} />)
-          :
-          products?.slice(currentSliceStart,currentSliceEnd).map((product) => <Product key={product._id}
-            product={product} />
-          )}
+       }
       </div>
       <div className='my-16 w-full flex flex-row '>
         {currentSliceStart >= 4 && <button className='mx-auto  px-4 py-2 text-white rounded-lg bg-gradient-to-br from-blue-300 to-rose-400' onClick={previousPage}>{lang=='du'?'vorherige':(lang=='ar'?'سابق':'قبلی')}</button>}
-        {currentSliceEnd <(filters?products?.filter((item) => (item.category.category == filters)).length :products?.length ) && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>{lang=='du'?'nächste':(lang=='ar'?'التالي':'بعد')}</button>}
+        {currentSliceEnd <data.length && <button className='mx-auto  px-4 py-2 rounded-lg text-white  bg-gradient-to-br from-blue-300 to-rose-400' onClick={nextPage}>{lang=='du'?'nächste':(lang=='ar'?'التالي':'بعد')}</button>}
       </div>
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>
@@ -116,7 +117,7 @@ const {lang,user} = useStateContext();
 
 export const getServerSideProps = async () => {
 
-  const query = '*[_type == "product"]{_id,product_name,product_image,price,slug,description,category->{category},arabic_name,persian_name,arabic_desc,persian_desc,available}'
+  const query = '*[_type == "product"]{_id,product_name,product_image,price,slug,description,category->{category},arabic_name,persian_name,arabic_desc,persian_desc,available,in_sale,off_price}'
   const bannerQuery = '*[_type == "banner"]{banner_image,buttonText,smallText,desc,midText,largeText,largeText2,saleTime,discount,product->}'
   const catQuery = '*[_type == "category"]'
 

@@ -89,7 +89,7 @@ const Cart = () => {
                                         className='flex flex-row justify-between items-center text-lg  '
                                         onClick={()=>onRemove(item)}>
                                         <TiDeleteOutline />
-                                        <p>{strings.DEL_ITEM[lang]}</p>
+                                        <p className='text-xs md:text-md'>{strings.DEL_ITEM[lang]}</p>
                                     </button>
                                     </>
                                 </div>

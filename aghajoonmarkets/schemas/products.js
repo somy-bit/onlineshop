@@ -35,8 +35,14 @@ export default{
             title:"Slug",
             type:"slug",
             options:{
-                source:"name",
-                maxLength:90, 
+               
+                    source: 'product_name',
+                    maxLength: 200, // will be ignored if slugify is set
+                    slugify: input => input
+                                         .toLowerCase()
+                                         .replace(/\s+/g, '-')
+                                         .slice(0, 200)
+                
             }
         },
         {
@@ -74,6 +80,24 @@ export default{
             type:"boolean"
 
         },
+        {
+            name:"in_sale",
+            title :"تخفیف",
+            type:"boolean"
+
+        },
+        {
+            name:"off_price",
+            title :"قیمت تخفیف خورده",
+            type:"number"
+
+        },
       
-    ]
+    ],
+    initialValue: {
+        off_price: 0,
+        in_sale:false,
+        available:true,
+
+      }
 }

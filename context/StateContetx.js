@@ -11,6 +11,7 @@ export const StateContext = ({ children }) => {
     if (typeof window !== 'undefined') {
         // Perform localStorage action
         currentUser= JSON.parse(localStorage.getItem('user'))
+        console.log(currentUser)
         userlang = JSON.parse(localStorage.getItem('userlang'))
       }
   
@@ -23,10 +24,16 @@ export const StateContext = ({ children }) => {
     const [qty, setQty] = useState(1);
     const [user,setUser] =useState(currentUser);
     const [lang,setLang] = useState(userlang ||'du')
+   
+
 
   
     useEffect(()=>{
+
         localStorage.setItem('user',JSON.stringify(user))
+        localStorage.setItem('cartItems',JSON.stringify(cartItems))
+        localStorage.setItem('totalPrice',JSON.stringify(totalPrice))
+        localStorage.setItem('totalqty',JSON.stringify(totalQuantity))
         localStorage.setItem('userlang',JSON.stringify(lang))
         
       },[user,lang])

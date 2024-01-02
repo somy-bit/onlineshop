@@ -17,11 +17,11 @@ const Headnav = () => {
                     <Link href="/about" >{strings.ABOUT_US_LBL[lang]}</Link>
                 </p>
                 <div className='relative flex items-center justify-end w-full'>
-                    <p onClick={() => setShowLang(!showLang)} className='w-20  text-center px-3 py-2 hover:bg-gray-50 hover:shadow-lg shadow-sm cursor-pointer rounded-md'>{strings.LNAGUAGE_LBL[lang]}</p>
+                    <p onClick={() => setShowLang(!showLang)} className='w-20  text-center text-sm md:text-lg px-3 py-2 hover:bg-gray-50 hover:shadow-lg shadow-sm cursor-pointer rounded-md'>{strings.LNAGUAGE_LBL[lang]}</p>
                     {showLang && <div className='absolute right-0 flex flex-row justify-center items-center p-2 rounded-md  space-x-3 bg-white '>
-                        <bottun type='button' className='cursor-pointer' onClick={() => { setLang('ar'); setShowLang(false) }}>عربي</bottun>
-                        <bottun type='button' className='cursor-pointer' onClick={() => { setLang('du'); setShowLang(false) }}>dutch</bottun>
-                        <bottun type='button' className='cursor-pointer' onClick={() => { setLang('fa'); setShowLang(false) }}>فارسی</bottun>
+                        <button type='button' className='cursor-pointer text-sm md:text-lg font-extralight' onClick={() => { setLang('ar'); setShowLang(false) }}>عربي</button>
+                        <button type='button' className='cursor-pointer text-sm md:text-lg' onClick={() => { setLang('du'); setShowLang(false) }}>dutch</button>
+                        <button type='button' className='cursor-pointer text-sm md:text-lg font-extralight' onClick={() => { setLang('fa'); setShowLang(false) }}>فارسی</button>
                     </div>
                     }
                 </div>

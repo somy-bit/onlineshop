@@ -4,7 +4,7 @@ import { strings } from '../strings'
 import { useStateContext } from '../context/StateContetx'
 
 
-const HeroBanner = ({ heroBanner }) => {
+const HeroBanner = ({ heroBanner , offdata}) => {
 
   const { lang } = useStateContext();
 
@@ -19,7 +19,7 @@ const HeroBanner = ({ heroBanner }) => {
         }
         <div>
 
-          <button onClick={() => { }} type="button">{heroBanner.buttonText}</button>
+          <button onClick={() => offdata()} type="button">{heroBanner.buttonText}</button>
 
 
           <div className='desc'>
