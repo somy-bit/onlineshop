@@ -19,10 +19,10 @@ const CheckoutForm = () => {
             {
                 cartItems?.map((item,i) => (
                     <div key={i} className='grid grid-cols-4 p-4  border-b-2 border-gray-300 mx-auto text-center  '>
-                        <div>{item.product_name}</div>
+                        <div>{lang=='du'?item.product_name:(lang=='ar'?item.arabic_name:item.persian_name)}</div>
                         <div>{item.quantity}</div>
-                        <div>{item.price}</div>
-                        <div>{item.price * item.quantity}</div>
+                        <div>{item.in_sale?item.off_price:item.price}</div>
+                        <div>{(item.in_sale?item.off_price:item.price)*100* item.quantity/100}</div>
                     </div>
                 ))
             }

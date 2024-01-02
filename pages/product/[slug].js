@@ -12,7 +12,7 @@ import { strings } from '../../strings';
 const ProductDetails = ({ product, otherProducts }) => {
 
 
-    const { product_name, product_image, price, description, arabic_name, persian_name, available, arabic_desc, persian_desc } = product;
+    const { product_name, product_image, price, description, arabic_name, off_price, persian_name, available, arabic_desc, persian_desc, in_sale } = product;
     const [index, setIndex] = useState(0);
     const { incQty, decQty, qty, onAdd, setShowCart, user, lang } = useStateContext();
 
@@ -41,9 +41,9 @@ const ProductDetails = ({ product, otherProducts }) => {
             <div className='product-detail-container'>
                 <div>
                     <div className='image-container'>
-                      <a href={urlFor(product_image && product_image[0])}> 
-                      <img   alt='product-image' className={available ? 'product-detail-image' : 'product-detail-image filter grayscale'} src={urlFor(product_image && product_image[index])} />
-                      </a> 
+                        <a href={urlFor(product_image && product_image[0])}>
+                            <img alt='product-image' className={available ? 'product-detail-image' : 'product-detail-image filter grayscale'} src={urlFor(product_image && product_image[index])} />
+                        </a>
                     </div>
                     <div className='small-images-container'>
                         {product_image?.map((item, i) => (
@@ -66,8 +66,13 @@ const ProductDetails = ({ product, otherProducts }) => {
                         </div>
                         <p>(20)</p>
                     </div>
-                    <p className='price'>€{price}</p>
+                    <div className='flex flex-row justify-start space-x-3'>
+                        <p className={in_sale ? 'price line-through' : 'price'}>€{price}</p>
 
+                        {in_sale &&
+                            <p className='price'>€{off_price}</p>
+                        }
+                    </div>
                     <div className='space-y-2 quantity'>
                         <h3>{strings.QTY[lang]}</h3>
                         <p className='flex flex-row quantity-desc'>
@@ -120,9 +125,9 @@ export const getStaticPaths = async () => {
         }
     }`;
 
-    const pros= await client.fetch(query);
-    
-    
+    const pros = await client.fetch(query);
+
+
     const paths = pros.map((product) => ({
         params: {
             slug: product.slug.current
@@ -140,12 +145,12 @@ export const getStaticProps = async ({ params: { slug } }) => {
     const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
     const otherQuery = '*[_type == "product" && defined(slug.current)]';
 
-    
+
     const product = await client.fetch(query)
     console.log(product)
     const pros = await client.fetch(otherQuery)
 
-    const otherProducts = pros.filter(item=>!Object.values(item).includes(null))
+    const otherProducts = pros.filter(item => !Object.values(item).includes(null))
 
     return {
         props: { product, otherProducts }

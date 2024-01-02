@@ -54,9 +54,9 @@ export const StateContext = ({ children }) => {
 
     const onAdd = (product, quantity) => {
 
-
+        let price = product.in_sale?product.off_price:product.price;
         const checkProductInCart = cartItems.find((item) => item._id === product._id)
-        setTotalPrice((prevPrice) => sum(prevPrice,product.price * quantity,2))
+        setTotalPrice((prevPrice) => sum(prevPrice,price * quantity,2))
         setTotalQuantity((prevQty) => prevQty + quantity)
 
         if (checkProductInCart) {
@@ -80,8 +80,8 @@ export const StateContext = ({ children }) => {
     const onRemove =(product)=>{
 
         const newItems = cartItems.filter((item)=>item._id!== product._id)
-
-        setTotalPrice((prevToP)=>minus(prevToP,product.price*product.quantity,2))
+        let price = product.in_sale?product.off_price:product.price;
+        setTotalPrice((prevToP)=>minus(prevToP,price*product.quantity,2))
         setTotalQuantity((prevToQ)=>prevToQ-product.quantity)
 
         setCartItems(newItems)
@@ -97,14 +97,17 @@ export const StateContext = ({ children }) => {
 
             let newCartItems = [...newCArtItem.slice(0,index), { ...foundItem, 'quantity': foundItem.quantity + 1 },...newCArtItem.slice(index)]
             setCartItems(newCartItems)
-            setTotalPrice((prevToP) => sum(prevToP , foundItem.price,2))
+            let price = foundItem.in_sale?foundItem.off_price:foundItem.price;
+            setTotalPrice((prevToP) => sum(prevToP , price,2))
             setTotalQuantity((prevToQ) => prevToQ + 1)
 
         } else if (value == 'dec') {
             if (foundItem.quantity > 1) {
                 let newCartItems = [...newCArtItem.slice(0,index), { ...foundItem, 'quantity': foundItem.quantity - 1 },...newCArtItem.slice(index)]
                 setCartItems(newCartItems)
-                setTotalPrice((prevToP) =>minus(prevToP , foundItem.price,2))
+
+                 let price = foundItem.in_sale?foundItem.off_price:foundItem.price;
+                setTotalPrice((prevToP) =>minus(prevToP , price,2))
                 setTotalQuantity((prevToQ) => prevToQ - 1)
             }
         }
