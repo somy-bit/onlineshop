@@ -11,7 +11,7 @@ const Headnav = () => {
     const { user, setLang, lang ,logout} = useStateContext();
 
     return (
-        <div className='flex flex-row items-center justify-between h-20 w-full'>
+        <div className='hidden md:flex flex-row items-center justify-between px-4 h-16 w-full'>
             <div className='flex flex-row items-center justify-between flex-grow'>
                 <p className='text-xs w-20 p-3 rounded-md font-bold text-gray-500 hover:text-gray-600 hover:shadow-lg'>
                     <Link href="/about" >{strings.ABOUT_US_LBL[lang]}</Link>

@@ -28,20 +28,20 @@ const Cart = () => {
 
    
     return (
-        <div className='cart-wrapper' ref={cartRef}>
+        <div className='cart-wrapper ' ref={cartRef}>
             <div className='cart-container'>
                 <button
                     type='button'
-                    className='cart-heading'
+                    className='flex items-center text-[18px] font-semibold cursor-pointer spaxe-x-2 ml-3 bg-transparent'
                     onClick={() => setShowCart(false)}
                 >
                     <FaAngleLeft />
-                    <span className='heading'>{strings.BASKET_LBL[lang]}</span>
-                    <span className='cart-num-items'>({totalQuantity} {strings.ITEM_LBL[lang]})</span>
+                    <span className='ml-3'>{strings.BASKET_LBL[lang]}</span>
+                    <span className='ml-3 text-red-600'>({totalQuantity} {strings.ITEM_LBL[lang]})</span>
                 </button>
 
                 {cartItems.length < 1 && (
-                    <div className='empty-cart flex flex-col items-center'>
+                    <div className='m-[40px] text-center flex flex-col items-center'>
                         <FaShoppingBasket size={150} />
                         <h3 >{strings.EMPTY_BASKET[lang]}</h3>
                         <Link href='/'>
@@ -54,28 +54,28 @@ const Cart = () => {
                     </div>
                 )}
 
-                <div className='product-container'>
+                <div className='mt-[15px] overflow-auto max-h-[70vh] px-4 py-3'>
                     {cartItems.length >= 1 && cartItems.map((item, index) => (
-                        <div className='product' key={item._id}>
+                        <div className='flex space-x-3 space-y-5 p-4' key={item._id}>
                             <img
                                 src={urlFor(item?.product_image[0])}
-                                className='cart-product-image'
+                                className='w-[160px] h-[140px] rounded-lg bg-slate-100'
                             />
                             <div className='item-desc'>
-                                <div className='flex  top'>
+                                <div className='flex justify-between w-[350px] text-gray-600 text-sm flex-wrap space-x-4-space-y-4'>
                                     <h5>{lang=='du'?item.product_name:(lang=='ar'?item.arabic_name:item.persian_name)}</h5>
                                     <h4>€{item.in_sale?item.off_price:item.price}</h4>
                                 </div>
-                                <div className='flex buttom'>
-                                    <div>
-                                        <p className='flex flex-row mt-3 quantity-desc'>
-                                            <span className='minus' onClick={()=>toggleCartItemQuantity(item._id,'dec')}>
+                                <div className='flex justify-between w-[350px] text-gray-600  buttom'>
+                                    <div className=' w-[350px] '>
+                                        <p className='grid grid-cols-3 mx-auto mt-3 w-[100px] ml-2 border border-gray-400 p-0'>
+                                            <span className='text-[16px] px-1 py-1 cursor-pointer border border-gray-400 text-red-500' onClick={()=>toggleCartItemQuantity(item._id,'dec')}>
                                                 <FaMinus />
                                             </span>
-                                            <span className='num' >
+                                            <span className=' px-1 py-1  bg-blue-300 cursor-pointer border-r border-gray-400 text-[20px]' >
                                                 {item.quantity}
                                             </span>
-                                            <span className='plus' onClick={()=>toggleCartItemQuantity(item._id,'inc')}>
+                                            <span className='text-[16px]  px-1 py-1 cursor-pointer text-green-500' onClick={()=>toggleCartItemQuantity(item._id,'inc')}>
                                                 <FaPlus />
                                             </span>
                                         </p>
@@ -99,12 +99,12 @@ const Cart = () => {
                     ))}
                 </div>
                 {cartItems.length >=1 && (
-                    <div className='cart-bottom'>
-                        <div className='total'>
+                    <div className='absolute bottom-0 right-0 w-full px-6 py-8 bg-white'>
+                        <div className='flex justify-between'>
                             <h3>{strings.TOTAL[lang]}</h3>
                             <h3>€{totalPrice}</h3>
                         </div>
-                        <div className='btn-container'>
+                        <div className='w-[400px] mx-auto my-auto'>
                             <button 
                             className='btn' 
                             type='button'

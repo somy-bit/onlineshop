@@ -38,60 +38,60 @@ const ProductDetails = ({ product, otherProducts }) => {
 
     return (
         <div>
-            <div className='product-detail-container'>
+            <div className='flex flex-col md:flex-row sm:px-4 mt-[40px] gap-[40px] text-gray-500 '>
                 <div>
-                    <div className='image-container'>
+                    <div className='w-full md:w-[400px] h-[400px]'>
                         <a href={urlFor(product_image && product_image[0])}>
-                            <img alt='product-image' className={available ? 'product-detail-image' : 'product-detail-image filter grayscale'} src={urlFor(product_image && product_image[index])} />
+                            <img alt='product-image' className={available ? 'mx-auto rounded-md bg-gray-50 w-[400px] h-[400px] cursor-pointer transition hover:bg-red-500 hover:duration-300 ease-in-out' : 'mx-auto rounded-md bg-gray-50 w-[400px] h-[400px] cursor-pointer transition hover:bg-red-500 hover:duration-300 ease-in-out  filter grayscale'} src={urlFor(product_image && product_image[index])} />
                         </a>
                     </div>
-                    <div className='small-images-container'>
+                    <div className='flex px-4 gap-[10px] mt-[20px]'>
                         {product_image?.map((item, i) => (
                             <img key={i} src={urlFor(item)}
-                                className={i === index ? "small-image selected-image" : "small-image"}
+                                className={i === index ? "rounded-sm bg-red-500 w-[70px] h-[70px] cursor-pointer" : "rounded-sm bg-gray-50 w-[70px] h-[70px] cursor-pointer"}
                                 onMouseEnter={() => setIndex(i)}
                                 alt='thumbnail' />
                         ))}
                     </div>
                 </div>
-                <div className='product-detail-desc'>
-                    <h1>{lang == 'du' ? product_name : (lang == 'ar' ? arabic_name : persian_name)}</h1>
+                <div className='px-4 md:p-1 flex flex-col justify-center items-center md:items-start w-full '>
+                    <h1 className='text-gray-700 font-semibold text-xl'>{lang == 'du' ? product_name : (lang == 'ar' ? arabic_name : persian_name)}</h1>
                     <div className='reviews'>
                         <div className='flex flex-row'>
                             <FaStar />
                             <FaStar />
                             <FaStar />
                             <FaStar />
-                            <FiStar />
+                            
                         </div>
-                        <p>(20)</p>
+                        <p></p>
                     </div>
                     <div className='flex flex-row justify-start space-x-3'>
-                        <p className={in_sale ? 'price line-through' : 'price'}>€{price}</p>
+                        <p className={in_sale ? 'ont-bold text-lg mt-10 text-red-500 line-through' : 'ont-bold text-lg mt-10 text-red-500'}>€{price}</p>
 
                         {in_sale &&
-                            <p className='price'>€{off_price}</p>
+                            <p className='font-bold text-lg mt-10 text-green-500'>€{off_price}</p>
                         }
                     </div>
-                    <div className='space-y-2 quantity'>
-                        <h3>{strings.QTY[lang]}</h3>
-                        <p className='flex flex-row quantity-desc'>
-                            <span className='minus' onClick={decQty}>
+                    <div className='flex flex-row gap-[20px] mt-4 items-center'>
+                        <h3>{strings.QTY[lang]} :</h3>
+                        <p className='grid grid-cols-3 mx-auto mt-3 w-[100px] ml-2 border border-gray-400 p-0 '>
+                            <span className='text-[16px] px-1 py-1 cursor-pointer border border-gray-400 text-red-500' onClick={decQty}>
                                 <FiMinus />
                             </span>
-                            <span className='num' >
+                            <span className='px-1 py-1  bg-blue-300 cursor-pointer border-r border-gray-400 text-[20px]' >
                                 {qty}
                             </span>
-                            <span className='plus' onClick={incQty}>
+                            <span className='text-[16px]  px-1 py-1 cursor-pointer text-green-500' onClick={incQty}>
                                 <FiPlus />
                             </span>
                         </p>
                     </div>
 
-                    <div className='buttons'>
+                    <div className='w-full'>
 
-                        <button type='button' disabled={!available} onClick={addProduct} className='add-to-cart'>{strings.ADD[lang]}</button>
-                        <button type='button' disabled={!available} onClick={() => onBuyNow(product, qty)} className='buy-now'>{strings.BUY_NOW[lang]}</button>
+                        <button type='button' disabled={!available} onClick={addProduct} className='px-3 py-5 border border-red-500 mt-10 text-md font-semibold bg-white text-red-500 cursor-pointer w-full md:w-64 transition-transform hover:sclae-105 hover:ease-in-out hover:duration-300'>{strings.ADD[lang]}</button>
+                        <button type='button' disabled={!available} onClick={() => onBuyNow(product, qty)} className='px-3 py-5 border border-red-500 mt-10 text-md font-semibold bg-red-500 text-white cursor-pointer w-full md:w-64 transition-transform hover:scale-1ß5 hover:ease-in-out hover:duration-300'>{strings.BUY_NOW[lang]}</button>
 
                     </div>
 

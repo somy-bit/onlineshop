@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
       {isLoading && isHome ?
         <SplashScreen finishLoading={()=>setIsLoading(false)} />
         :
-        <div className='layout'>
+        <div className=''>
           <Head>
             <title>aghajoon supermarket</title>
           </Head>
@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
             }
 
           </header>
-          <main className='main-container'>
+          <main className='w-screen mx-auto'>
             {children}
           </main>
 

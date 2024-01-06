@@ -4,8 +4,8 @@ import {urlFor} from "../lib/client"
 
 const FooterBanner = ({footerBanner}) => {
   return (
-    <div className='footer-banner-container'>
-      <div className='banner-desc'>
+    <div className='px-[100px] py-[40px] bg-red-400 rounded-md relative h-[400px] tetx-white w-full mt-[120px]' >
+      <div className='flex justify-between'>
         <div className='left'>
             <p>
                 {footerBanner.discount}
@@ -20,7 +20,7 @@ const FooterBanner = ({footerBanner}) => {
                 {footerBanner.saleTime}
             </p>
         </div>
-        <div className='right'>
+        <div className='leading-5'>
             <p>{footerBanner.smallText}</p>
             <h3>{footerBanner.midText}</h3>
 

@@ -12,13 +12,13 @@ const Footer = () => {
 
   const [showIcon, setShowIcon] = useState('home')
   return (
-    <div className='footer-container'>
+    <div className='text-gray-600 text-center mt-[20px] px-[30px] py-[10px] font-bold flex flex-col items-center space-y-[10px] justify-center'>
       {router.pathname == '/' &&
         <p className='font-extralight text-xs'>
           2023 aghajoonmarket all rights reserved
         </p>
       }
-      <p className='icons'>
+      <p className='text-[30px] flex space-x-5'>
         <FiHome onClick={() => setShowIcon('home')} className='cursor-pointer ' />
         <FiInstagram onClick={() => setShowIcon('instagram')} className='cursor-pointer  ' />
         <FiMail onClick={() => setShowIcon('email')} className='cursor-pointer  ' />

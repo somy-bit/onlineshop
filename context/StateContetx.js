@@ -24,6 +24,11 @@ export const StateContext = ({ children }) => {
     const [qty, setQty] = useState(1);
     const [user,setUser] =useState(currentUser);
     const [lang,setLang] = useState(userlang ||'du')
+    const [showMenu,setShowMenu] = useState(false)
+    const [category,setCategory] = useState()
+    const [categorys,setCategorys] = useState({category:'All',arabic_cat:'الجميع',persian_cat:'همه',_id:1 })
+
+
    
 
 
@@ -142,7 +147,8 @@ export const StateContext = ({ children }) => {
             setShowCart, qty, incQty, decQty, onAdd,
             toggleCartItemQuantity,onRemove,
             setCartItems,setTotalPrice,setTotalQuantity,
-            user,setUser,lang,setLang,logout
+            user,setUser,lang,setLang,logout,showMenu,setShowMenu,category,setCategory
+            ,categorys,setCategorys
         }}>
             {children}
         </Context.Provider>

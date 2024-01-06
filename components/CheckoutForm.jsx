@@ -22,7 +22,7 @@ const CheckoutForm = () => {
                         <div>{lang=='du'?item.product_name:(lang=='ar'?item.arabic_name:item.persian_name)}</div>
                         <div>{item.quantity}</div>
                         <div>{item.in_sale?item.off_price:item.price}</div>
-                        <div>{(item.in_sale?item.off_price:item.price)*100* item.quantity/100}</div>
+                        <div>{(Math.round((item.in_sale?item.off_price:item.price)* item.quantity*100)/100).toFixed(2)}</div>
                     </div>
                 ))
             }
