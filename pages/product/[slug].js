@@ -10,6 +10,7 @@ import { strings } from '../../strings';
 import { MdAddShoppingCart, MdShoppingCartCheckout } from "react-icons/md";
 
 
+
 const ProductDetails = ({ product, otherProducts }) => {
 
 

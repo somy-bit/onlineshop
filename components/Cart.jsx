@@ -54,7 +54,7 @@ const Cart = () => {
                     </div>
                 )}
 
-                <div className='mt-[15px] overflow-auto max-h-[70vh] px-4 py-3'>
+                <div className='mt-[15px] overflow-auto max-h-[70vh] px-4 pt-3 pb-24'>
                     {cartItems.length >= 1 && cartItems.map((item, index) => (
                         <div className='flex space-x-3 space-y-5 p-4' key={item._id}>
                             <img
@@ -66,7 +66,7 @@ const Cart = () => {
                                     <h5>{lang=='du'?item.product_name:(lang=='ar'?item.arabic_name:item.persian_name)}</h5>
                                     <h4>€{item.in_sale?item.off_price:item.price}</h4>
                                 </div>
-                                <div className='flex justify-between w-[350px] text-gray-600  buttom'>
+                                <div className='flex justify-between w-[350px] text-gray-600 '>
                                     <div className=' w-[350px] '>
                                         <p className='grid grid-cols-3 mx-auto mt-3 w-[100px] ml-2 border border-gray-400 p-0'>
                                             <span className='text-[16px] px-1 py-1 cursor-pointer border border-gray-400 text-red-500' onClick={()=>toggleCartItemQuantity(item._id,'dec')}>
@@ -99,7 +99,7 @@ const Cart = () => {
                     ))}
                 </div>
                 {cartItems.length >=1 && (
-                    <div className='absolute bottom-0 right-0 w-full  px-4 py-5 bg-white'>
+                    <div className='absolute bottom-0 right-0 w-full  px-4 py-3 bg-white'>
                         <div className='flex justify-between'>
                             <h3>{strings.TOTAL[lang]}</h3>
                             <h3>€{totalPrice}</h3>

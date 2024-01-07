@@ -2,7 +2,8 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import {FiChevronDown ,FiCheck} from 'react-icons/fi'
 import { useStateContext } from '../context/StateContetx'
-import { strings } from '../strings'
+import { useRouter } from 'next/router'
+import { strings } from '@/strings'
 
 
 
@@ -12,10 +13,15 @@ function classNames(...classes) {
 
 export default function CatSelect() {
 
+  const router = useRouter();
+
   const{category , lang ,setShowMenu ,categorys ,setCategorys} = useStateContext()
   const [selected, setSelected] = useState(categorys)
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    
+      router.pathname ==='/' &&
+
+      <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
           <div className="relative mt-2">
@@ -37,7 +43,7 @@ export default function CatSelect() {
             >
              
               <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {category.map((cat) => (
+                {category?.map((cat) => (
                   <Listbox.Option
                     key={cat.id}
                    onClick={()=>{setCategorys(cat);setShowMenu(false)}}
@@ -79,5 +85,6 @@ export default function CatSelect() {
         </>
       )}
     </Listbox>
+
   )
 }
