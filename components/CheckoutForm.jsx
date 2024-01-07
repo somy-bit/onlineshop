@@ -8,7 +8,12 @@ const CheckoutForm = () => {
 
     const { cartItems, totalPrice,lang } = useStateContext();
     return (
-        <div className=' max-w-2xl mx-auto space-x-4'>
+        <div className='w-full px-1  sm:max-w-2xl mx-auto space-x-4'>
+               <div className=' bg-red-400 mb-10 rounded-md text-white w-full ' >
+      
+      <img src='/images/footer.jpeg' alt='footer banner'/>
+     
+    </div>
             <h2 className='text-center text-green-900 font-semibold mb-8'>{strings.BILL_LBL[lang]}</h2>
             <div className='grid grid-cols-4 p-4  border-b-2 border-gray-500 mx-auto text-center  '>
                 <div className='overflow-hidden'>{strings.PRODUCTS_LBL[lang]}</div>

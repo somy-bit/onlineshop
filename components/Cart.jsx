@@ -29,7 +29,7 @@ const Cart = () => {
    
     return (
         <div className='cart-wrapper ' ref={cartRef}>
-            <div className='cart-container'>
+            <div className='cart-container pr-2'>
                 <button
                     type='button'
                     className='flex items-center text-[18px] font-semibold cursor-pointer spaxe-x-2 ml-3 bg-transparent'
@@ -99,12 +99,12 @@ const Cart = () => {
                     ))}
                 </div>
                 {cartItems.length >=1 && (
-                    <div className='absolute bottom-0 right-0 w-full px-6 py-8 bg-white'>
+                    <div className='absolute bottom-0 right-0 w-full  px-4 py-5 bg-white'>
                         <div className='flex justify-between'>
                             <h3>{strings.TOTAL[lang]}</h3>
                             <h3>€{totalPrice}</h3>
                         </div>
-                        <div className='w-[400px] mx-auto my-auto'>
+                        <div className='flex flex-row justify-center items-center '>
                             <button 
                             className='btn' 
                             type='button'

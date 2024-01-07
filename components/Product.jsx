@@ -22,7 +22,7 @@ const Product = ({ product }) => {
   }
 
   return (
-    <div className={router.pathname == '/' ? 'bg-gray-100 rounded-md' : 'bg-gray-100 rounded-md w-[140px]'}>
+    <div className={router.pathname == '/' ? ' bg-gray-100 rounded-md' : 'bg-gray-100 rounded-md w-[140px]'}>
       <Link href={`/product/${slug.current}`}>
         <div className='product-card'>
           {product_image &&

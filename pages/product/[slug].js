@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useStateContext } from '../../context/StateContetx';
 import toast from 'react-hot-toast';
 import { strings } from '../../strings';
+import { MdAddShoppingCart, MdShoppingCartCheckout } from "react-icons/md";
 
 
 const ProductDetails = ({ product, otherProducts }) => {
@@ -38,6 +39,21 @@ const ProductDetails = ({ product, otherProducts }) => {
 
     return (
         <div>
+            <div className='fixed-btn md:hidden'> <button type='button' disabled={!available} onClick={addProduct} className='px-3 py-4 border border-red-500  text-md font-semibold bg-white text-red-500 cursor-pointer  flex-1 hover:bg-gray-100 hover:ease-in-out hover:duration-300'>
+                <span className='flex flex-row items-center justify-center'>
+                <MdAddShoppingCart size={25} className='text-red-400 mr-2'/>
+                {strings.ADD[lang]}
+                </span>
+                
+                </button>
+                <button type='button' disabled={!available} onClick={() => onBuyNow(product, qty)} className='px-3 py-4  text-md font-semibold bg-red-500 text-white cursor-pointer flex-1 transition-transform hover:bg-red-600 hover:ease-in-out hover:duration-300'>
+                <span className='flex flex-row items-center justify-center'>
+                <MdShoppingCartCheckout size={25} className='text-white mr-2'/>
+                {strings.BUY_NOW[lang]}
+                </span>
+               
+                    </button>
+            </div>
             <div className='flex flex-col md:flex-row sm:px-4 mt-[40px] gap-[40px] text-gray-500 '>
                 <div>
                     <div className='w-full md:w-[400px] h-[400px]'>
@@ -62,15 +78,20 @@ const ProductDetails = ({ product, otherProducts }) => {
                             <FaStar />
                             <FaStar />
                             <FaStar />
-                            
+
                         </div>
                         <p></p>
                     </div>
                     <div className='flex flex-row justify-start space-x-3'>
+
+                        <p className='font-bold text-lg mt-10 text-gray-500'>{strings.PRICE_LBL[lang]}</p>
+
                         <p className={in_sale ? 'ont-bold text-lg mt-10 text-red-500 line-through' : 'ont-bold text-lg mt-10 text-red-500'}>€{price}</p>
 
                         {in_sale &&
+
                             <p className='font-bold text-lg mt-10 text-green-500'>€{off_price}</p>
+
                         }
                     </div>
                     <div className='flex flex-row gap-[20px] mt-4 items-center'>
@@ -88,10 +109,10 @@ const ProductDetails = ({ product, otherProducts }) => {
                         </p>
                     </div>
 
-                    <div className='w-full'>
+                    <div className='hidden md:block w-full'>
 
-                        <button type='button' disabled={!available} onClick={addProduct} className='px-3 py-5 border border-red-500 mt-10 text-md font-semibold bg-white text-red-500 cursor-pointer w-full md:w-64 transition-transform hover:sclae-105 hover:ease-in-out hover:duration-300'>{strings.ADD[lang]}</button>
-                        <button type='button' disabled={!available} onClick={() => onBuyNow(product, qty)} className='px-3 py-5 border border-red-500 mt-10 text-md font-semibold bg-red-500 text-white cursor-pointer w-full md:w-64 transition-transform hover:scale-1ß5 hover:ease-in-out hover:duration-300'>{strings.BUY_NOW[lang]}</button>
+                        <button type='button' disabled={!available} onClick={addProduct} className='px-3 py-5 border border-red-500 mt-10 text-md font-semibold bg-white text-red-500 cursor-pointer w-full md:w-64 transition-transform hover:scale-105 hover:ease-in-out hover:duration-300'>{strings.ADD[lang]}</button>
+                        <button type='button' disabled={!available} onClick={() => onBuyNow(product, qty)} className='px-3 py-5 border border-red-500 mt-10 text-md font-semibold bg-red-500 text-white cursor-pointer w-full md:w-64 transition-transform hover:scale-105 hover:ease-in-out hover:duration-300'>{strings.BUY_NOW[lang]}</button>
 
                     </div>
 
