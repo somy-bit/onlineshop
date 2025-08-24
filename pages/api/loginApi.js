@@ -15,11 +15,11 @@ export default async function handler(req, res) {
 
                     res
                         .status(200)
-                        .json({ msg_du: 'je bent succesvol ingelogd',msg_fa:'شما با موفقیت وارد شدید',msg_ar:'لقد قمت بتسجيل الدخول بنجاح' ,user:checkUser})
+                        .json({ msg_du: 'successfully logged in',msg_fa:'شما با موفقیت وارد شدید',msg_ar:'لقد قمت بتسجيل الدخول بنجاح' ,user:checkUser})
                         console.log('-------------------------',checkUser)
                 }else{
                     res.status(500)
-                    .json({msg_du:'Voer het juiste e-mailadres of wachtwoord in',msg_fa:'آدرس ایمیل یا رمز عبور صحیح را وارد کنید',msg_ar:'أدخل عنوان البريد الإلكتروني أو كلمة المرور الصحيحة'})
+                    .json({msg_du:'wrong credentials',msg_fa:'آدرس ایمیل یا رمز عبور صحیح را وارد کنید',msg_ar:'أدخل عنوان البريد الإلكتروني أو كلمة المرور الصحيحة'})
                 }
 
 

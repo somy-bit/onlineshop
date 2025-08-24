@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
       {isLoading && isHome ?
         <SplashScreen finishLoading={()=>setIsLoading(false)} />
         :
-        <div className='layout'>
+        <div className='w-full h-full'>
           <Head>
             <title>aghajoon supermarket</title>
           </Head>
@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
             {!hidNav && <Navbar />}
 
           </header>
-          <main className='main-container'>
+          <main className=''>
             {children}
           </main>
 

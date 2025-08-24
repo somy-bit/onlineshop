@@ -12,7 +12,7 @@ export const StateContext = ({ children }) => {
     const [qty, setQty] = useState(1);
     const [user,setUser] =useState(null);
     const [admin,setAdmin] = useState(null)
-    const [lang,setLang] = useState('du')
+    const [lang,setLang] = useState('en')
 
 
     let foundItem;
@@ -48,7 +48,7 @@ export const StateContext = ({ children }) => {
             setCartItems([...cartItems, { ...product }])
 
         }
-        let msg = lang=='du'?'toegevoegd aan de winkelwagen':(lang=='ar'?'تضاف إلى سلة التسوق':'به سبد خرید اضافه شد')
+        let msg = lang=='en'?'Added to basket':'به سبد خرید اضافه شد'
         toast.success(`${qty} ${product.product_name} ${msg} `,{duration:2000});
     }
 

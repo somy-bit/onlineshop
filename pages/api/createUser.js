@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       const query = '*[_type=="user"]{email}';
       const usrs = await client.fetch(query);
       if (usrs.find(i => i.email === newUser.email)) {
-        return res.status(500).json({ msg_du: 'Es existiert bereits ein Benutzer mit dieser E-Mail-Adresse!',msg_ar:'يوجد مستخدم بالفعل باستخدام عنوان البريد الإلكتروني هذا!',msg_fa:'یک کاربر از قبل با این آدرس ایمیل وجود دارد!' })
+        return res.status(500).json({ msg_du: 'An account with this email already exists!',msg_fa:'یک کاربر از قبل با این آدرس ایمیل وجود دارد!' })
       } else {
         try {
          const nUser = await client
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
           
           res
             .status(200)
-            .json({ msg: 'Ihre Registrierung wurde erfolgreich abgeschlossen',id:nUser._id})
+            .json({ msg: 'successfully registered',id:nUser._id})
 
 
 

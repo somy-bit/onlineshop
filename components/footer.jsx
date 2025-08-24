@@ -12,10 +12,10 @@ const Footer = () => {
 
   const [showIcon, setShowIcon] = useState('home')
   return (
-    <div className='footer-container'>
+    <div className='footer-container bg-gray-100 shadow-lg border-t mt-10'>
       {router.pathname == '/' &&
         <p className='font-extralight'>
-          2023 aghajoonmarket all rights reserved
+          2023 myshop all rights reserved
         </p>
       }
       <p className='icons'>
@@ -29,16 +29,15 @@ const Footer = () => {
 
         {
           showIcon == 'home' ?
-            <div>adresse:Carl von Linde Str 20,
-              Wiesbaden 65197 West Center</div>
+            <div>adresse:bridgeport rd richmond bc canada</div>
             :
             showIcon == 'instagram' ?
-              <Link href="/" >@aghajoon_supermarket</Link>
+              <Link href="/" >@myshop</Link>
               :
               showIcon == 'email' ?
-                <div>agha-joon@web.de</div>
+                <div>myshop@test.com</div>
                 :
-                <div>+49-1590-6849527</div>
+                <div>+1-999888222</div>
 
         }
       </div>
