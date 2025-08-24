@@ -31,7 +31,7 @@ export default function HeroBanner({heroBanner}) {
       setCurrent((prev) => (prev + 1) % heroBanner.promotions.length)
     }, 4000)
     return () => clearInterval(timer)
-  }, [])
+  })
 
   return (
     <div className="relative mt-10 w-full  h-72 md:h-96 overflow-hidden  shadow-lg">

@@ -7,7 +7,7 @@ const FooterBanner = () => {
       
       {/* Static Image */}
       <motion.img
-        src="https://images.unsplash.com/photo-1606788075761-6e41c4b6a9a1?auto=format&fit=crop&w=300&q=80"
+        src="https://images.unsplash.com/photo-1598514983144-5b042c9921b8?auto=format&fit=crop&w=300&q=80"
         alt="Promo"
         className="w-40 h-40 object-cover rounded-lg mb-4 md:mb-0"
         initial={{ opacity: 0, y: 20 }}
