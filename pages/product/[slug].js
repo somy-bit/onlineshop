@@ -36,10 +36,10 @@ const ProductDetails = ({ product, otherProducts }) => {
 
     return (
         <div>
-            <div className='product-detail-container'>
+            <div className='flex flex-col md:flex-row mt-16 px-5'>
                 <div>
-                    <div className='image-container'>
-                        <img className='product-detail-image' src={urlFor(product_image && product_image[index])} />
+                    <div className='flex h-[400px] w-full md:w-[400px]'>
+                        <img className='w-full md:w-[400px] md:rounded-xl' src={urlFor(product_image && product_image[index])} />
                     </div>
                     <div className='small-images-container'>
                         {product_image?.map((item, i) => (
@@ -49,7 +49,7 @@ const ProductDetails = ({ product, otherProducts }) => {
                         ))}
                     </div>
                 </div>
-                <div className='product-detail-desc'>
+                <div className='product-detail-desc px-5 overflow-hidden'>
                     <h1>{lang == 'en' ? product_name :  persian_name}</h1>
                     <div className='reviews'>
                         <div className='flex flex-row'>
@@ -86,7 +86,7 @@ const ProductDetails = ({ product, otherProducts }) => {
                     </div>
 
                     <h4 className='mt-4 font-semibold'>{lang == 'en' ? 'Details:' : 'جزئیات :'}</h4>
-                    <p className='text-gray-500'>{description}</p>
+                    <p className='text-gray-500 overflow-hidden'>{description}</p>
                 </div>
             </div>
 

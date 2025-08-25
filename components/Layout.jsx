@@ -3,14 +3,14 @@ import Head from "next/head"
 import Navbar from "./Navbar"
 import Footer from './footer'
 import { useRouter } from 'next/router'
-import SplashScreen from './SplashScreen'
+
 
 
 const Layout = ({ children }) => {
 
   const router = useRouter();
   const hidNav = router.pathname == "/registerOrder" || router.pathname == "/about" || router.pathname == '/success' || router.pathname == '/login' || router.pathname == '/registerNewUser' || router.pathname == '/admin';
-  const isHome = router.pathname == '/'
+
   const showFooter = router.pathname == '/'
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,9 +21,8 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {isLoading && isHome ?
-        <SplashScreen finishLoading={()=>setIsLoading(false)} />
-        :
+      
+       
         <div className='w-full h-full'>
           <Head>
             <title>aghajoon supermarket</title>
@@ -42,8 +41,7 @@ const Layout = ({ children }) => {
             
           </footer>
         </div>
-      }
-
+   
     </>
   )
 }
