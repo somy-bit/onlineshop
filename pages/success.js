@@ -25,9 +25,9 @@ const Success = () => {
         <p className='icon'>
             <BsBagCheckFill />
         </p>
-        <h2>bedankt voor het kiezen van onze winkel </h2>
+        <h2>Congratulations </h2>
         <Link href='/'>
-            <button type='button' className='btn' width="300px">doorgaan met winkelen</button>
+            <button type='button' className='btn' width="300px">Your Order Is Submitted</button>
         </Link>
       </div>
     </div>
